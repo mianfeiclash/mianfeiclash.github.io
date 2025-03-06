@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://mianfeiclash.github.io/news/article-67930.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Vue路由router详细总结</title>
+        <meta name="description" content="Vue路由router详细总结  模块化的方式使用路由插件 使用路由   声明式导航 编程式导航   动态路由匹配 通配符匹配路径 查询参数query 响应路由参数的变化 命名路由，路由别名，重定向 " />
+        <link rel="icon" href="/assets/website/img/surgemac/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="免费Clash节点 机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mianfeiclash.github.io/news/article-67930.htm" />
+    <meta property="og:site_name" content="免费Clash节点 机场订阅节点官网" />
+    <meta property="og:title" content="Vue路由router详细总结" />
+    <meta property="og:image" content="https://mianfeiclash.github.io/uploads/20240731-2/156937973a6c1fdd92946f007fb83416.webp" />
+        <meta property="og:release_date" content="2025-03-05T11:12:29" />
+    <meta property="og:updated_time" content="2025-03-05T11:12:29" />
+        <meta property="og:description" content="Vue路由router详细总结  模块化的方式使用路由插件 使用路由   声明式导航 编程式导航   动态路由匹配 通配符匹配路径 查询参数query 响应路由参数的变化 命名路由，路由别名，重定向 " />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Vue路由router详细总结">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Web Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/surgemac/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/glightbox.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/main.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/reset.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/responsive.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6FYYZM5YT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6FYYZM5YT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- /End Preloader -->
+    <!-- ========================= header start ========================= -->
+    <header class="header navbar-area">
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="nav-inner">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                                            <span>免费Clash节点</span>
+                                                        </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/">首页</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/client.htm">客户端</a>
+                                    </li>
+                                                                    </ul>
+                            </div> <!-- navbar collapse -->
+                        </nav> <!-- navbar -->
+                    </div>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </header>
+    <!-- ========================= header end ========================= -->
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content left">
+                        <h1 class="page-title">Vue路由router详细总结</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content right">
+                        <ul class="breadcrumb-nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li>正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+        <!-- Start Features Area -->
+    <section class="Features section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3>Vue路由router详细总结</h3> <ul> <li><a href="#_1" rel="nofollow">模块化的方式使用路由插件</a></li> <li><a href="#_39" rel="nofollow">使用路由</a></li> <li> <ul> <li><a href="#_40" rel="nofollow">声明式导航</a></li> <li><a href="#_65" rel="nofollow">编程式导航</a></li> </ul> </li> <li><a href="#_94" rel="nofollow">动态路由匹配</a></li> <li><a href="#_125" rel="nofollow">通配符匹配路径</a></li> <li><a href="#query_139" rel="nofollow">查询参数query</a></li> <li><a href="#_149" rel="nofollow">响应路由参数的变化</a></li> <li><a href="#_173" rel="nofollow">命名路由，路由别名，重定向</a></li> <li><a href="#_244" rel="nofollow">嵌套路由</a></li> <li><a href="#_287" rel="nofollow">命名视图</a></li> <li><a href="#_308" rel="nofollow">导航守卫</a></li> <li> <ul> <li><a href="#1_309" rel="nofollow">（1）全局守卫</a></li> <li><a href="#2_355" rel="nofollow">（2）路由独享守卫</a></li> <li><a href="#3_359" rel="nofollow">（3）组件内守卫</a></li> <li><a href="#_412" rel="nofollow">导航解析的流程</a></li> </ul> </li> </ul> </div> </h1> <p>（1）安装</p> <pre><code class="prism language-javascript">npm install vue<span class="token operator">-</span>router </code></pre> <p>（2）构建文件目录<br /> 在src目录下创建一个router文件夹，然后创建一个index.js<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230119/50305afd48de40f3d64d86ade4eb67b3.jpg" alt="Vue路由router详细总结"><br /> （3）这里我们通过模块化的方式进行创建路由，方便代码的管理，这里只是对路插件进行了注册，然后创建好路由对象。通过export default 关键字将创建好的路由对象暴露出去。</p> <pre><code class="prism language-javascript"><span class="token comment">//index.js</span> <span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">'vue-router'</span> <span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span> <span class="token keyword">import</span> Home <span class="token keyword">from</span> <span class="token string">"../views/Home"</span><span class="token punctuation">;</span> Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span><span class="token comment">//注册路由插件</span> <span class="token keyword">export</span> <span class="token keyword">default</span>  <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>     routes<span class="token operator">:</span><span class="token punctuation">[</span><span class="token punctuation">{<!-- --></span>         path<span class="token operator">:</span><span class="token string">'/'</span><span class="token punctuation">,</span>         component<span class="token operator">:</span>Home     <span class="token punctuation">}</span><span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </code></pre> <p>（4）在入口文件main.js引入创建好的路由对象，并且把他挂载到Vue实例中。</p> <pre><code class="prism language-javascript"><span class="token comment">//main.js</span> <span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span> <span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./App.vue'</span> <span class="token keyword">import</span> store <span class="token keyword">from</span> <span class="token string">'@/store'</span> <span class="token keyword">import</span> router <span class="token keyword">from</span> <span class="token string">'@/router'</span><span class="token comment">//这里就是引入了我们创建好的路由对象。模块化的编程思维</span> Vue<span class="token punctuation">.</span>config<span class="token punctuation">.</span>productionTip <span class="token operator">=</span> <span class="token boolean">false</span> <span class="token class-name">Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>bus <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>   store<span class="token punctuation">,</span>   router<span class="token punctuation">,</span>   <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token parameter">h</span> <span class="token operator">=&gt;</span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">'#app'</span><span class="token punctuation">)</span> </code></pre> </h1> <h2> <a id="_40" rel="nofollow"></a>声明式导航</h2> <p><code>可以理解成，通过标签进行跳转</code><br /> 声明式导航:<code>&lt;router-link :to="..."&gt; 或者 &lt;router-link to="..."&gt;</code><br /> 定义路由规则</p> <pre><code class="prism language-javascript"> <span class="token punctuation">{<!-- --></span>         path<span class="token operator">:</span><span class="token string">'/'</span><span class="token punctuation">,</span>         component<span class="token operator">:</span>Home         name<span class="token operator">:</span>home     <span class="token punctuation">}</span> </code></pre> <p>（1）router-link导航标签to属性使用字符串方式</p> <pre><code class="prism language-javascript"> <span class="token operator">&lt;</span>router<span class="token operator">-</span>link to<span class="token operator">=</span><span class="token string">"/"</span><span class="token operator">&gt;</span>go to home<span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span> </code></pre> <p>（2）router-link导航标签to使用对象的方式</p> <ul> <li>使用路径进行匹配</li> </ul> <pre><code class="prism language-javascript"> <span class="token operator">&lt;</span>router<span class="token operator">-</span>link <span class="token operator">:</span>to<span class="token operator">=</span><span class="token string">"{path:'/'}"</span><span class="token operator">&gt;</span>go to home<span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span> </code></pre> <ul> <li>router-link导航标签to属性使用对象的方式并且使用路由名称进行匹配</li> </ul> <pre><code class="prism language-javascript"> <span class="token operator">&lt;</span>router<span class="token operator">-</span>link <span class="token operator">:</span>to<span class="token operator">=</span><span class="token string">"{name:'home'}"</span><span class="token operator">&gt;</span>go to home<span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span> </code></pre> <h2> <a id="_65" rel="nofollow"></a>编程式导航</h2> <p><code>可以理解成JS进行跳转</code></p> <p>编程式导航:<code>router.push(...)</code><br /> 下面的例子包含了动态路由匹配和query查询参数的知识，不清楚的可以先看了这两者的内容再回来看此处的内容。</p> <pre><code class="prism language-javascript"><span class="token comment">// 字符串</span> router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'home'</span><span class="token punctuation">)</span>  <span class="token comment">// 对象</span> router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span> path<span class="token operator">:</span> <span class="token string">'home'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment">// 命名的路由</span> router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span> name<span class="token operator">:</span> <span class="token string">'user'</span><span class="token punctuation">,</span> params<span class="token operator">:</span> <span class="token punctuation">{<!-- --></span> userId<span class="token operator">:</span> <span class="token string">'123'</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment">// 带查询参数，变成 /register?plan=private</span> router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span> path<span class="token operator">:</span> <span class="token string">'register'</span><span class="token punctuation">,</span> query<span class="token operator">:</span> <span class="token punctuation">{<!-- --></span> plan<span class="token operator">:</span> <span class="token string">'private'</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span> </code></pre> <p>注意：如果提供了 path，params 会被忽略，上述例子中的 query 并不属于这种情况。取而代之的是下面例子的做法，你需要提供路由的 name 与params配合或手写完整的带有参数的 path：</p> <pre><code class="prism language-javascript"><span class="token keyword">const</span> userId <span class="token operator">=</span> <span class="token string">'123'</span> router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span> name<span class="token operator">:</span> <span class="token string">'user'</span><span class="token punctuation">,</span> params<span class="token operator">:</span> <span class="token punctuation">{<!-- --></span> userId <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// -&gt; /user/123</span> router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span> path<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/user/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${<!-- --></span>userId<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// -&gt; /user/123</span> <span class="token comment">// 这里的 params 不生效</span> router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span> path<span class="token operator">:</span> <span class="token string">'/user'</span><span class="token punctuation">,</span> params<span class="token operator">:</span> <span class="token punctuation">{<!-- --></span> userId <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// -&gt; /user</span> </code></pre> </h1> <p>定义路由规则</p> <pre><code class="prism language-javascript"> <span class="token punctuation">{<!-- --></span>         path<span class="token operator">:</span><span class="token string">'/user/:id'</span><span class="token punctuation">,</span>         component<span class="token operator">:</span>User         name<span class="token operator">:</span>user     <span class="token punctuation">}</span> </code></pre> <pre><code class="prism language-javascript"> <span class="token operator">&lt;</span>router<span class="token operator">-</span>link to<span class="token operator">=</span><span class="token string">"/user/01"</span><span class="token operator">&gt;</span>go to home<span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span> </code></pre> <pre><code class="prism language-javascript"> <span class="token operator">&lt;</span>router<span class="token operator">-</span>link <span class="token operator">:</span>to<span class="token operator">=</span><span class="token string">"{path:'/user/01'}"</span><span class="token operator">&gt;</span>go to home<span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span> </code></pre> <pre><code class="prism language-javascript"> <span class="token operator">&lt;</span>router<span class="token operator">-</span>link <span class="token operator">:</span>to<span class="token operator">=</span><span class="token string">"{name:'/user',params={id:'01'}}"</span><span class="token operator">&gt;</span>go to home<span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span> </code></pre> <p><code>通过如上的方式进行定义，可以通过$route.params.id 获动态路由参数:id值为’01‘</code><br /><em>注意：<br /> 当使用对象的方式进行匹配时候，不能通过path和params的方式。只能通过name和params的方式</em></p> <p>如下方式，不能匹配到路由规则<code>{path:'/user/:id'}</code> ，如下表述只能被理解成’/user’，<br /> 即使通过*通配符匹配到该路由，params也不会被传递过去，因为要有path这个属性就不会去解析params的属性了。</p> <pre><code class="prism language-javascript"> <span class="token operator">&lt;</span>router<span class="token operator">-</span>link <span class="token operator">:</span>to<span class="token operator">=</span><span class="token string">"{path:'/user',params={id:'01'}}"</span><span class="token operator">&gt;</span>go to home<span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span> </code></pre> </h1> <p>我们通常使用*捕获其他意外的路径，进行个兜底的处理，通常将其导航到404错误页面。</p> <pre><code class="prism language-javascript"><span class="token punctuation">{<!-- --></span>   <span class="token comment">// 会匹配所有路径</span>   path<span class="token operator">:</span> <span class="token string">'*'</span> <span class="token punctuation">}</span> <span class="token punctuation">{<!-- --></span>   <span class="token comment">// 会匹配以 `/user-` 开头的任意路径</span>   path<span class="token operator">:</span> <span class="token string">'/user-*'</span> <span class="token punctuation">}</span> </code></pre> <p><code>当使用一个通配符时，$route.params 内会自动添加一个名为 pathMatch 参数。它包含了 URL 通过通配符被匹配的部分</code></p> </h1> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>router<span class="token operator">-</span>link to<span class="token operator">=</span>“<span class="token operator">/</span>user<span class="token operator">?</span>name<span class="token operator">=</span>zhangsan"<span class="token operator">&gt;</span><span class="token operator">...</span><span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>router<span class="token operator">-</span>link <span class="token operator">:</span>to<span class="token operator">=</span><span class="token string">"{path:'/user?zhangsan'}"</span><span class="token operator">&gt;</span><span class="token operator">...</span><span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>router<span class="token operator">-</span>link <span class="token operator">:</span>to<span class="token operator">=</span><span class="token string">"{path:'/user',query:{name:'zhangsan'}}"</span><span class="token operator">&gt;</span><span class="token operator">...</span><span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>router<span class="token operator">-</span>link <span class="token operator">:</span>to<span class="token operator">=</span><span class="token string">"{name:'user',query:{name:'zhangsan'}}"</span><span class="token operator">&gt;</span><span class="token operator">...</span><span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span> </code></pre> <p>查询参数不想动态路由参数匹配那样，就算使用了path，依然可以使用query进行传参;<br /> 以上query传递过来的参数可以通过<code>this.$route.query.name</code>进行获取。</p> </h1> <p>如果路由从<code>/user/01</code>导航到<code>/user/02</code>，原来的组件实例会被复用。因为有两个路由都渲染同一个组件，这意味着组件的生命周期钩子不会被再次调用。因此需要通过其他方式进行监听参数的变化来做出响应。<br /> （1）通过watch进行监听</p> <pre><code class="prism language-javascript"><span class="token keyword">const</span> User <span class="token operator">=</span> <span class="token punctuation">{<!-- --></span>   template<span class="token operator">:</span> <span class="token string">'...'</span><span class="token punctuation">,</span>   watch<span class="token operator">:</span> <span class="token punctuation">{<!-- --></span>     <span class="token function">$route</span><span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> <span class="token keyword">from</span></span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>       <span class="token comment">// 对路由变化作出响应...</span>     <span class="token punctuation">}</span>   <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p>（2）通过导航守卫进行监听</p> <pre><code class="prism language-javascript"><span class="token keyword">const</span> User <span class="token operator">=</span> <span class="token punctuation">{<!-- --></span>   template<span class="token operator">:</span> <span class="token string">'...'</span><span class="token punctuation">,</span>   <span class="token function">beforeRouteUpdate</span><span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     <span class="token comment">// react to route changes...</span>     <span class="token comment">// don't forget to call next()</span>   <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> </h1> <p>特别地我把这三者的概念放在一起来阐述，是为了更好的去区分他们之间的区别。<code>这些内容都是在路由规则去配置的</code>。</p> <pre><code class="prism language-javascript"><span class="token punctuation">{<!-- --></span>         path<span class="token operator">:</span> <span class="token string">'/pageOne'</span><span class="token punctuation">,</span>         component<span class="token operator">:</span>PageOne<span class="token punctuation">,</span>         alias<span class="token operator">:</span><span class="token string">"/firstPage"</span><span class="token punctuation">,</span>         name<span class="token operator">:</span><span class="token string">"pageOne"</span><span class="token punctuation">,</span>         redirect<span class="token operator">:</span><span class="token punctuation">{<!-- --></span>name<span class="token operator">:</span><span class="token string">'pageTwo'</span><span class="token punctuation">}</span>     <span class="token punctuation">}</span><span class="token punctuation">,</span>     <span class="token punctuation">{<!-- --></span>         path<span class="token operator">:</span> <span class="token string">'/pageTwo'</span><span class="token punctuation">,</span>         component<span class="token operator">:</span>PageTwo<span class="token punctuation">,</span>         name<span class="token operator">:</span><span class="token string">'pageTwo'</span>     <span class="token punctuation">}</span> </code></pre> <p>（1）命名路由：可以理解成给这个路由取个名字<br /> 即使通过name属性给路由取一个名字</p> <pre><code class="prism language-javascript">routes<span class="token operator">:</span> <span class="token punctuation">[</span>     <span class="token punctuation">{<!-- --></span>       path<span class="token operator">:</span> <span class="token string">'/user/:userId'</span><span class="token punctuation">,</span>       name<span class="token operator">:</span> <span class="token string">'user'</span><span class="token punctuation">,</span>       component<span class="token operator">:</span> User     <span class="token punctuation">}</span>   <span class="token punctuation">]</span> </code></pre> <p>（2）路由别名：可以理解成这个路由的第二个名字。<br /> 例如：<code>/a</code>的别名是<code>/b</code>,当用户访问/b的时候，URL会保持/b但是路由匹配到的内容则为/a，也就是知识URL内容显示<code>/b</code>内容实则是<code>/a</code><br /> 注意了：这里别名要使用路径的方式去表述，而不是跟命名路由那样直接写名字哦~</p> <pre><code class="prism language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>   routes<span class="token operator">:</span> <span class="token punctuation">[</span>     <span class="token punctuation">{<!-- --></span> path<span class="token operator">:</span> <span class="token string">'/a'</span><span class="token punctuation">,</span> component<span class="token operator">:</span> <span class="token constant">A</span><span class="token punctuation">,</span> alias<span class="token operator">:</span> <span class="token string">'/b'</span> <span class="token punctuation">}</span>   <span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </code></pre> <p>（3）重定向：可以理解为访问<code>/a</code>的时候直接跳转到<code>/b</code><br /> 重定向的表述有三种形式：</p> <ul> <li>字符串</li> </ul> <pre><code class="prism language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>   routes<span class="token operator">:</span> <span class="token punctuation">[</span>     <span class="token punctuation">{<!-- --></span> path<span class="token operator">:</span> <span class="token string">'/a'</span><span class="token punctuation">,</span> redirect<span class="token operator">:</span> <span class="token string">'/b'</span> <span class="token punctuation">}</span>   <span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </code></pre> <ul> <li>对象</li> </ul> <pre><code class="prism language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>   routes<span class="token operator">:</span> <span class="token punctuation">[</span>     <span class="token punctuation">{<!-- --></span> path<span class="token operator">:</span> <span class="token string">'/a'</span><span class="token punctuation">,</span> redirect<span class="token operator">:</span> <span class="token punctuation">{<!-- --></span> name<span class="token operator">:</span> <span class="token string">'foo'</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>   <span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </code></pre> <ul> <li>方法</li> </ul> <pre><code class="prism language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>   routes<span class="token operator">:</span> <span class="token punctuation">[</span>     <span class="token punctuation">{<!-- --></span> path<span class="token operator">:</span> <span class="token string">'/a'</span><span class="token punctuation">,</span> <span class="token function-variable function">redirect</span><span class="token operator">:</span> <span class="token parameter">to</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{<!-- --></span>       <span class="token comment">// 方法接收 目标路由 作为参数</span>       <span class="token comment">// return 重定向的 字符串路径/路径对象</span>     <span class="token punctuation">}</span><span class="token punctuation">}</span>   <span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </code></pre> </h1> <p>嵌套路由可以这么理解，所匹配的路由渲染出来的组件中包含路由组件，’/user’当我们匹配到一个路由渲染出一个组件User，但是如果想继续在User组件的<code>&lt;router-view &gt;&lt;/router-view&gt;</code>继续匹配。则我们要通过<code>/user/childRouteName</code>进一步匹配。"childRouteName"就是我们路由规则children中对应的path的值啦。</p> <pre><code class="prism language-javascript"> <span class="token punctuation">{<!-- --></span>       path<span class="token operator">:</span> <span class="token string">'/user'</span><span class="token punctuation">,</span>       component<span class="token operator">:</span> User<span class="token punctuation">,</span>       children<span class="token operator">:</span> <span class="token punctuation">[</span>         <span class="token punctuation">{<!-- --></span>           <span class="token comment">// 当 /user//profile 匹配成功，</span>           <span class="token comment">// UserProfile 会被渲染在 User 的 &lt;router-view&gt; 中</span>           path<span class="token operator">:</span> <span class="token string">'profile'</span><span class="token punctuation">,</span>           component<span class="token operator">:</span> UserProfile         <span class="token punctuation">}</span><span class="token punctuation">,</span>         <span class="token punctuation">{<!-- --></span>           <span class="token comment">// 当 /user//posts 匹配成功</span>           <span class="token comment">// UserPosts 会被渲染在 User 的 &lt;router-view&gt; 中</span>           path<span class="token operator">:</span> <span class="token string">'posts'</span><span class="token punctuation">,</span>           component<span class="token operator">:</span> UserPosts         <span class="token punctuation">}</span>       <span class="token punctuation">]</span>     <span class="token punctuation">}</span> </code></pre> <p>APP.Vue中</p> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"app"</span><span class="token operator">&gt;</span>   <span class="token operator">&lt;</span>router<span class="token operator">-</span>view<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>view<span class="token operator">&gt;</span> <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span> </code></pre> <p>User组件中</p> <pre><code class="prism language-javascript"><span class="token keyword">const</span> User <span class="token operator">=</span> <span class="token punctuation">{<!-- --></span>   template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">     &lt;div class="user"&gt;       &lt;span&gt;User组件&lt;/span&gt;       &lt;router-view&gt;&lt;/router-view&gt;     &lt;/div&gt;   </span><span class="token template-punctuation string">`</span></span> <span class="token punctuation">}</span> </code></pre> <p>注意：<br /> 定义了嵌套路由，即定义了children的情况下，必须是完整的路由才可以匹配正确。也就是 当 <code>/user/profile</code>匹配成功，但是<code>/user</code>这样是无法匹配成功的。</p> </h1> <p>当一个组件上同时渲染多个视图，注意是同级展示多个视图，而不是嵌套展示。那此时就可以通过命名视图来解决这个问题。<br /> 路由规则定义</p> <pre><code class="prism language-javascript"><span class="token punctuation">{<!-- --></span>         path<span class="token operator">:</span><span class="token string">"/namingRoute"</span><span class="token punctuation">,</span>         components<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token comment">//注意此处components是带's'结尾的，之前单个的时候是不带的。</span>             <span class="token keyword">default</span><span class="token operator">:</span>Home<span class="token punctuation">,</span>             one<span class="token operator">:</span>PageOne<span class="token punctuation">,</span>             two<span class="token operator">:</span>PageTwo         <span class="token punctuation">}</span>     <span class="token punctuation">}</span> </code></pre> <p>组件定义</p> <pre><code class="prism language-javascript"> 	<span class="token operator">&lt;</span>router<span class="token operator">-</span>view<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>view<span class="token operator">&gt;</span><span class="token comment">//渲染default对应的组件</span>     <span class="token operator">&lt;</span>router<span class="token operator">-</span>view name<span class="token operator">=</span><span class="token string">"one"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>view<span class="token operator">&gt;</span><span class="token comment">//渲染one对应的组件</span>     <span class="token operator">&lt;</span>router<span class="token operator">-</span>view name<span class="token operator">=</span><span class="token string">"two"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>view<span class="token operator">&gt;</span><span class="token comment">//渲染two对应的组件</span> </code></pre> <p>当URL为:<code>/namingRoute</code>的时候 匹配到该路由，则会按照对应的router-view视图组件进行渲染。</p> </h1> <h2> <a id="1_309" rel="nofollow"></a>（1）全局守卫</h2> <p>可以理解成通过全局router实例对象router进行定义的守卫。</p> <ul> <li> <strong>route.beforeEach</strong>（全局前置守卫）</li> </ul> <p>使用方式：</p> <pre><code class="prism language-javascript"><span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span><span class="token keyword">from</span><span class="token punctuation">,</span>next</span><span class="token punctuation">)</span><span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span> 	<span class="token comment">//...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </code></pre> <ul> <li> <strong>router.beforeResolve</strong>（全局解析守卫）</li> </ul> <p>在所有组件内守卫和异步路由组件被解析之后，解析守卫就被调用<br /> 使用方式：</p> <pre><code class="prism language-javascript">router<span class="token punctuation">.</span><span class="token function">beforeResolve</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{<!-- --></span>   <span class="token comment">// ...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </code></pre> <ul> <li> <strong>router.afterEach</strong> （全局后置钩子）</li> </ul> <p>钩子不会接受 next 函数也不会改变导航本身：<br /> 使用方式：</p> <pre><code class="prism language-javascript">router<span class="token punctuation">.</span><span class="token function">afterEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> <span class="token keyword">from</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{<!-- --></span>   <span class="token comment">// ...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </code></pre> <pre><code>使用的位置：通常在router文件夹下的index.js  const router = new VueRouter({ ... }) //全局前置守卫 router.beforeEach((to, from, next) =&gt; {   // ... }) //全局解析守卫 router.beforeResolve((to, from, next) =&gt; {   // ... }) //全局后置钩子 router.afterEach((to, from) =&gt; {   // ... }) </code></pre> <h2> <a id="2_355" rel="nofollow"></a>（2）路由独享守卫</h2> <p>可以理解成在路由规则上定义的守卫</p> <ul> <li><strong>beforeEnter</strong></li> </ul> <h2> <a id="3_359" rel="nofollow"></a>（3）组件内守卫</h2> <p>可以理解成在组件内定义的守卫</p> <ul> <li> <strong>beforeRouteEnter</strong><br /> 还没有创建组件实例，在该路由被confirm前调用。</li> </ul> <pre><code class="prism language-javascript"><span class="token keyword">const</span> User <span class="token operator">=</span> <span class="token punctuation">{<!-- --></span>   template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">...</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>   <span class="token function">beforeRouteEnter</span><span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     <span class="token comment">// 在渲染该组件的对应路由被 confirm 前调用</span>     <span class="token comment">// 不！能！获取组件实例 `this`</span>     <span class="token comment">// 因为当守卫执行前，组件实例还没被创建</span>   <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p>注意：<br /> 该守卫不能直接使用<code>this</code>访问vue实例对象，因为此时组件实例还没有被创建。但是可以通过给next方法传递回调来方位组件的实例。<br /><code>给next()传递回调，仅在beforeRouteEnter使用有效！！！</code></p> <pre><code class="prism language-javascript"><span class="token function">beforeRouteEnter</span> <span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>   <span class="token function">next</span><span class="token punctuation">(</span><span class="token parameter">vm</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{<!-- --></span>     <span class="token comment">// 通过 `vm` 访问组件实例</span>   <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> </code></pre> <ul> <li> <strong>beforeRouteUpdate (2.2 新增)</strong><br /> 在路由改变且该组件被服用时调用</li> </ul> <pre><code class="prism language-javascript"><span class="token keyword">const</span> User <span class="token operator">=</span> <span class="token punctuation">{<!-- --></span>   template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">...</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>    <span class="token function">beforeRouteUpdate</span><span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     <span class="token comment">// 在当前路由改变，但是该组件被复用时调用</span>     <span class="token comment">// 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，</span>     <span class="token comment">// 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。</span>     <span class="token comment">// 可以访问组件实例 `this`</span>   <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <ul> <li> <strong>beforeRouteLeave</strong><br /> 在导航离开该组件对应的路由时调用</li> </ul> <pre><code class="prism language-javascript"><span class="token keyword">const</span> User <span class="token operator">=</span> <span class="token punctuation">{<!-- --></span>   template<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">...</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>    <span class="token function">beforeRouteLeave</span><span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span>     <span class="token comment">// 导航离开该组件的对应路由时调用</span>     <span class="token comment">// 可以访问组件实例 `this`</span>   <span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <h2> <a id="_412" rel="nofollow"></a>导航解析的流程</h2> <p>正常首次访问路由的执行顺序</p> <ul> <li>beforeEach 全局的路由前置守卫</li> <li>beforeEnter 独享路由守卫</li> <li>beforeRouteEnter 组件路由守卫</li> <li>beforeResolve 全局路由解析守卫</li> <li>afterEach 全局路由后置钩子</li> <li>Dom渲染</li> <li>调用beforeRouteEnter 组件路由守卫中传递给<code>next</code>的回调函数。并且把创建号的组件实例作为回调函数的参数传入。</li> </ul> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-67320.htm">动物诊疗机构违反本法规定（动物诊疗机构管理办法立法依据）</a></p>
+                                        <p>下一个：<a href="/news/article-67931.htm">Pandas大数据量内存优化</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-2-25-free-node-subscribe-links.htm" title="免费Clash节点 | 2月25日18.8M/S|免费V2ray/SSR/Shadowrocket/Clash免费节点订阅分享">免费Clash节点 | 2月25日18.8M/S|免费V2ray/SSR/Shadowrocket/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-63587.htm" title="国产优质狗粮品牌（国产狗粮品牌推荐）">国产优质狗粮品牌（国产狗粮品牌推荐）</a></li>
+                        <li class="py-2"><a href="/news/article-65439.htm" title="兽用疫苗回温器在哪买（兽用疫苗回温器怎么用）">兽用疫苗回温器在哪买（兽用疫苗回温器怎么用）</a></li>
+                        <li class="py-2"><a href="/news/article-61200.htm" title="猫喜欢你的表现是什么（猫咪对主人的喜欢程度及表现）">猫喜欢你的表现是什么（猫咪对主人的喜欢程度及表现）</a></li>
+                        <li class="py-2"><a href="/news/article-60064.htm" title="自家宠物猫轻微抓伤有一点渗血有事吗怎么办（自家猫咪抓了一点点血）">自家宠物猫轻微抓伤有一点渗血有事吗怎么办（自家猫咪抓了一点点血）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-28-free-high-speed-nodes.htm" title="免费Clash节点 | 2月28日22.7M/S|免费Shadowrocket/SSR/V2ray/Clash免费节点订阅分享">免费Clash节点 | 2月28日22.7M/S|免费Shadowrocket/SSR/V2ray/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-61201.htm" title="包含成都市宠物狗领养平台电话是多少的词条">包含成都市宠物狗领养平台电话是多少的词条</a></li>
+                        <li class="py-2"><a href="/news/article-66050.htm" title="Antd 动态显示 Upload 已上传文件">Antd 动态显示 Upload 已上传文件</a></li>
+                        <li class="py-2"><a href="/news/article-58391.htm" title="北京宠物店招聘学徒（北京宠物店招聘信息）">北京宠物店招聘学徒（北京宠物店招聘信息）</a></li>
+                        <li class="py-2"><a href="/news/article-59487.htm" title="宠物粮食店铺图片高清 宠物粮食店铺图片高清大图">宠物粮食店铺图片高清 宠物粮食店铺图片高清大图</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Features Area -->
+        <!-- Start Footer Area -->
+    <footer class="footer">
+        <!-- Start Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>免费Clash节点 机场订阅节点官网 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Middle -->
+    </footer>
+    <!--/ End Footer Area -->
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top btn-hover">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/surgemac/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/imagesloaded.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/isotope.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/main.js"></script>
+    <script type="text/javascript">
+    //========= glightbox
+    GLightbox({
+        'href': '#',
+        'type': 'video',
+        'source': 'youtube', //vimeo, youtube or local
+        'width': 900,
+        'autoplayVideos': true,
+    });
+
+    //====== Clients Logo Slider
+    tns({
+        container: '.client-logo-carousel',
+        slideBy: 'page',
+        autoplay: true,
+        autoplayButtonOutput: false,
+        mouseDrag: true,
+        gutter: 15,
+        nav: false,
+        controls: false,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            540: {
+                items: 2,
+            },
+            768: {
+                items: 3,
+            },
+            992: {
+                items: 4,
+            },
+            1170: {
+                items: 6,
+            }
+        }
+    });
+
+    //======== Home Slider
+    var slider = new tns({
+        container: '.home-slider',
+        slideBy: 'page',
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        items: 1,
+        nav: true,
+        controls: false,
+        controlsText: [
+            '<i class="lni lni-arrow-left prev"></i>',
+            '<i class="lni lni-arrow-right next"></i>'
+        ],
+        responsive: {
+            1200: {
+                items: 1,
+            },
+            992: {
+                items: 1,
+            },
+            0: {
+                items: 1,
+            }
+
+        }
+    });
+
+    //======== Testimonial Slider
+    var slider = new tns({
+        container: '.testimonial-slider',
+        slideBy: 'page',
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        items: 1,
+        nav: true,
+        controls: false,
+        controlsText: [
+            '<i class="lni lni-arrow-left prev"></i>',
+            '<i class="lni lni-arrow-right next"></i>'
+        ],
+        responsive: {
+            1200: {
+                items: 2,
+            },
+            992: {
+                items: 1,
+            },
+            0: {
+                items: 1,
+            }
+
+        }
+    });
+
+    //============== isotope masonry js with imagesloaded
+    imagesLoaded('#container', function() {
+        var elem = document.querySelector('.grid');
+        var iso = new Isotope(elem, {
+            // options
+            itemSelector: '.grid-item',
+            masonry: {
+                // use outer width of grid-sizer for columnWidth
+                columnWidth: '.grid-item'
+            }
+        });
+
+        let filterButtons = document.querySelectorAll('.portfolio-btn-wrapper button');
+        filterButtons.forEach(e =>
+            e.addEventListener('click', () => {
+
+                let filterValue = event.target.getAttribute('data-filter');
+                iso.arrange({
+                    filter: filterValue
+                });
+            })
+        );
+    });
+    </script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
