@@ -1,4 +1,4 @@
-# 免费Clash节点 | 3月8日19.2M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享  更新时间 2025-03-08 05:18:10
+# 免费Clash节点 | 3月10日21.5M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享  更新时间 2025-03-10 04:49:13
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://mianfeiclash.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://mianfeiclash.github.io/uploads/2025/03/0-20250308.yaml
-- https://mianfeiclash.github.io/uploads/2025/03/1-20250308.yaml
-- https://mianfeiclash.github.io/uploads/2025/03/2-20250308.yaml
-- https://mianfeiclash.github.io/uploads/2025/03/3-20250308.yaml
-- https://mianfeiclash.github.io/uploads/2025/03/4-20250308.yaml
+- https://mianfeiclash.github.io/uploads/2025/03/0-20250310.yaml
+- https://mianfeiclash.github.io/uploads/2025/03/1-20250310.yaml
+- https://mianfeiclash.github.io/uploads/2025/03/2-20250310.yaml
+- https://mianfeiclash.github.io/uploads/2025/03/3-20250310.yaml
+- https://mianfeiclash.github.io/uploads/2025/03/4-20250310.yaml
 
 ### V2ray订阅链接
 
-- https://mianfeiclash.github.io/uploads/2025/03/0-20250308.txt
-- https://mianfeiclash.github.io/uploads/2025/03/1-20250308.txt
-- https://mianfeiclash.github.io/uploads/2025/03/2-20250308.txt
-- https://mianfeiclash.github.io/uploads/2025/03/3-20250308.txt
-- https://mianfeiclash.github.io/uploads/2025/03/4-20250308.txt
+- https://mianfeiclash.github.io/uploads/2025/03/0-20250310.txt
+- https://mianfeiclash.github.io/uploads/2025/03/1-20250310.txt
+- https://mianfeiclash.github.io/uploads/2025/03/2-20250310.txt
+- https://mianfeiclash.github.io/uploads/2025/03/3-20250310.txt
+- https://mianfeiclash.github.io/uploads/2025/03/4-20250310.txt
 
 ### Sing-box订阅链接
 
-- https://mianfeiclash.github.io/uploads/2025/03/20250308.json
+- https://mianfeiclash.github.io/uploads/2025/03/20250310.json
 
 ## 更多clash节点订阅 ：
 
