@@ -153,6 +153,7 @@
                   				  				  				</h1> <p>当我们在Python中写一个class时，如果有一部分的成员变量需要用一个字典来命名和赋值，此时应该如何操作呢？这个场景最常见于从一个文件（比如json、npz之类的文件）中读取字典变量到内存当中，再赋值给一个类的成员变量，或者已经生成的实例变量。</p> </h1> <p>在python中直接支持了<code>__dict__.update()</code>这样的方法来操作，避免了对locals()、vars()和eval()函数的使用，我们可以直接看这样的一个案例：</p> <pre><code class="language-python">In [1]: dict_a = {'a':1, 'b':2}  In [2]: dict_b = {'c':3}  In [3]: class D(object):    ...:     def __init__(self):    ...:         self.d = 4    ...:         self.__dict__.update(dict_a)    ...:         self.__dict__.update(dict_b)    ...:   In [4]: new_D = D()  In [5]: new_D.__dict__ Out[5]: {'d': 4, 'a': 1, 'b': 2, 'c': 3}  In [6]: new_D.a Out[6]: 1  In [7]: new_D.c Out[7]: 3</code></pre> <p>在这个案例中，我们在类的外部定义了两个字典<code>dict_a</code>和<code>dict_b</code>，字典的key值都是字符串的格式。而我们知道字符串格式在python中如果不使用eval，是不能直接作为变量名来使用的。而通过<code>__dict__.update()</code>的方法将字典导入后，会自动识别其中所有的key和value值，转而赋值给当前类作为成员变量。但是这个方法有一个缺点是，只能通过单层的字典来赋值，如果遇到有层级结构的字典，是不会自动分辨层级结构进行赋值的，比如下方的代码：</p> <pre><code class="language-python">In [15]: dict_a = {'f':{'h':8},'g':7}  In [16]: new_D = D()  In [17]: new_D.__dict__ Out[17]: {'d': 4, 'f': {'h': 8}, 'g': 7, 'c': 3}</code></pre> </h1> <p>根据上一个章节中最后提到的这个特殊场景，我们需要对字典内的元素进行递归，如果遇到嵌套的字典元素，则递归的将该元素添加到下一层级的成员变量中，具体代码如下所示：</p> <pre><code class="language-python">dict_a = {'f':{'h':8},'g':7} dict_b = {'c':3}  class D:     def __init__(self, *args):         for arg in args:             for k, v in arg.items():                 if isinstance(v, dict):                     self.__dict__[k] = D(v)                 else:                     self.__dict__[k] = v  new_D = D(dict_a, dict_b) print (new_D.__dict__) print (new_D.f.h)</code></pre> <p>最终的输出结果如下所示：</p> <pre><code class="language-bash">{'f': &lt;__main__.D object at 0x7fd2f32a4340&gt; , 'g': 7, 'c': 3} 8</code></pre> <p>可以看到，我们最终通过<code>new_D.f.h</code>的方法，成功读取了原有的嵌套字典中的value。虽然这种写法看起来不是很优雅，但是似乎也没有更好的解决方案。并且，通过这个小问题的实践，发现了另外一个略有意思的问题：对python中的字典类型进行更新时，如果key的字符串中带有点号，比如<code>parDict['group1.b'] = 3</code>，只能通过这样的字符串的形式进行更新，如果使用<code>parDict.update(group1.b=4)</code>则会发生报错，这是因为点号在python中不是一个标识符，不能用于命名，原文内容如下：</p> <blockquote> <p>The valid characters for identifiers are the same as in Python 2.x: the uppercase and lowercase letters A through Z, the underscore _ and, except for the first character, the digits 0 through 9.</p> </blockquote> </h1> <p>本文所解决的问题场景是这样的：如果给定一个字典，比如一般从json文件或者npz文件中加载出来的数据都是字典的数据结构，如果我们希望把这个字典赋值给一个类，且使得字典的key和value分别作为类的成员变量名和成员变量值，那么该如何实现呢？对于一个展平的字典而言（没有嵌套字典），我们直接使用update就可以将字典中的所有key和value转变为当前类的成员变量。比较麻烦的是包含有嵌套字典的层级结构字典，此时我们只能使用循环，并且递归的对类的成员变量进行赋值。</p> <ol></ol> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-71853.htm">Linux网络服务之NFS共享服务</a></p>
+                                        <p>下一个：<a href="/news/article-72507.htm">nodejs的TCP相关的一些笔记</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -162,16 +163,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-3-8-free-v2ray.htm" title="免费Clash节点 | 3月8日19.7M/S|免费Shadowrocket/Clash/SSR/V2ray免费节点订阅分享">免费Clash节点 | 3月8日19.7M/S|免费Shadowrocket/Clash/SSR/V2ray免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/news/article-67317.htm" title="猫三联加狂犬一共几针（猫三联 狂犬疫苗）">猫三联加狂犬一共几针（猫三联 狂犬疫苗）</a></li>
-                        <li class="py-2"><a href="/news/article-70543.htm" title="动物医院有哪些动物 动物医院有哪些动物名字">动物医院有哪些动物 动物医院有哪些动物名字</a></li>
-                        <li class="py-2"><a href="/news/article-69229.htm" title="猫瘟打针（猫瘟打针几天可以停）">猫瘟打针（猫瘟打针几天可以停）</a></li>
-                        <li class="py-2"><a href="/news/article-63586.htm" title="动物疫苗法律法规最新文件是什么（动物疫苗法案）">动物疫苗法律法规最新文件是什么（动物疫苗法案）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-2-22-free-node-subscribe-links.htm" title="免费Clash节点 | 2月22日19.6M/S|免费V2ray/Shadowrocket/SSR/Clash免费节点订阅分享">免费Clash节点 | 2月22日19.6M/S|免费V2ray/Shadowrocket/SSR/Clash免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/news/article-63587.htm" title="国产优质狗粮品牌（国产狗粮品牌推荐）">国产优质狗粮品牌（国产狗粮品牌推荐）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-2-19-free-subscribe-node.htm" title="免费Clash节点 | 2月19日20.3M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享">免费Clash节点 | 2月19日20.3M/S|免费SSR/V2ray/Clash/Shadowrocket免费节点订阅分享</a></li>
-                        <li class="py-2"><a href="/news/article-66049.htm" title="动态修改springboot中的scheduling(动态修改定时任务执行时间)">动态修改springboot中的scheduling(动态修改定时任务执行时间)</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-3-3-free-subscribe-node.htm" title="免费Clash节点 | 3月3日19.2M/S|免费SSR/Shadowrocket/Clash/V2ray免费节点订阅分享">免费Clash节点 | 3月3日19.2M/S|免费SSR/Shadowrocket/Clash/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-60064.htm" title="自家宠物猫轻微抓伤有一点渗血有事吗怎么办（自家猫咪抓了一点点血）">自家宠物猫轻微抓伤有一点渗血有事吗怎么办（自家猫咪抓了一点点血）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-24-free-v2ray-subscribe.htm" title="免费Clash节点 | 2月24日22.5M/S|免费Shadowrocket/Clash/SSR/V2ray免费节点订阅分享">免费Clash节点 | 2月24日22.5M/S|免费Shadowrocket/Clash/SSR/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-71188.htm" title="领养宠物的文章怎么写（领养宠物宣传文字）">领养宠物的文章怎么写（领养宠物宣传文字）</a></li>
+                        <li class="py-2"><a href="/news/article-71853.htm" title="Linux网络服务之NFS共享服务">Linux网络服务之NFS共享服务</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-26-free-high-speed-nodes.htm" title="免费Clash节点 | 2月26日21.9M/S|免费SSR/Shadowrocket/Clash/V2ray免费节点订阅分享">免费Clash节点 | 2月26日21.9M/S|免费SSR/Shadowrocket/Clash/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-1-free-subscribe-node.htm" title="免费Clash节点 | 3月1日20.6M/S|免费Shadowrocket/V2ray/SSR/Clash免费节点订阅分享">免费Clash节点 | 3月1日20.6M/S|免费Shadowrocket/V2ray/SSR/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-60640.htm" title="上海地区宠物领养中心地址 上海地区宠物领养中心地址查询">上海地区宠物领养中心地址 上海地区宠物领养中心地址查询</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-9-free-node-subscribe.htm" title="免费Clash节点 | 3月9日18.4M/S|免费V2ray/Clash/SSR/Shadowrocket免费节点订阅分享">免费Clash节点 | 3月9日18.4M/S|免费V2ray/Clash/SSR/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-58938.htm" title="动物疫苗接种间隔时间规定是多久（动物疫苗间隔多久打一次）">动物疫苗接种间隔时间规定是多久（动物疫苗间隔多久打一次）</a></li>
+                        <li class="py-2"><a href="/news/article-58390.htm" title="【和弦图】">【和弦图】</a></li>
                     </ul>
     </div>
 </div>
@@ -183,7 +184,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
