@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://mianfeiclash.github.io/news/article-80648.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Mac下配置Maven以及IDEA Maven配置</title>
+        <meta name="description" content="maven下载 地址：https://maven.apache.org/download.cgi  安装Maven 1 下载完是一个压缩包，解压即可，解压出来的文件如下图所示。  2、把解压出来的文件" />
+        <link rel="icon" href="/assets/website/img/surgemac/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="免费Clash节点 机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mianfeiclash.github.io/news/article-80648.htm" />
+    <meta property="og:site_name" content="免费Clash节点 机场订阅节点官网" />
+    <meta property="og:title" content="Mac下配置Maven以及IDEA Maven配置" />
+    <meta property="og:image" content="https://mianfeiclash.github.io/uploads/20240731-2/af93e18b3098a3d421a2f312a4040abc.webp" />
+        <meta property="og:release_date" content="2025-03-24T08:22:29" />
+    <meta property="og:updated_time" content="2025-03-24T08:22:29" />
+        <meta property="og:description" content="maven下载 地址：https://maven.apache.org/download.cgi  安装Maven 1 下载完是一个压缩包，解压即可，解压出来的文件如下图所示。  2、把解压出来的文件" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Mac下配置Maven以及IDEA Maven配置">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Web Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/surgemac/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/glightbox.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/main.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/reset.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/responsive.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6FYYZM5YT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6FYYZM5YT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- /End Preloader -->
+    <!-- ========================= header start ========================= -->
+    <header class="header navbar-area">
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="nav-inner">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                                            <span>免费Clash节点</span>
+                                                        </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/">首页</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/client.htm">客户端</a>
+                                    </li>
+                                                                    </ul>
+                            </div> <!-- navbar collapse -->
+                        </nav> <!-- navbar -->
+                    </div>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </header>
+    <!-- ========================= header end ========================= -->
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content left">
+                        <h1 class="page-title">Mac下配置Maven以及IDEA Maven配置</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content right">
+                        <ul class="breadcrumb-nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li>正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+        <!-- Start Features Area -->
+    <section class="Features section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h3>maven下载</h3> <p>地址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://maven.apache.org/download.cgi"  rel="nofollow">https://maven.apache.org/download.cgi</a></p> <p><img fetchpriority="high" decoding="async" alt="" height="1024" src="http://img.555519.xyz/uploads3/20220603/866879b2b22b773c3a37a11fe2a250df.jpg"></p> <h3><strong>安装Maven</strong></h3> <p>1 下载完是一个压缩包，解压即可，解压出来的文件如下图所示。</p> <p><img decoding="async" alt="" height="580" src="http://img.555519.xyz/uploads3/20220603/780bc7ebc12704a85eb9c037ea9ec351.jpg"></p> <p>2、把解压出来的文件拷贝到任意目录下面。（我这里将maven放在资源库文件夹下）</p> <p><img decoding="async" alt="" height="616" src="http://img.555519.xyz/uploads3/20220603/4cadf1dd08f4831382858f31a973f833.jpg"></p> <p>3&nbsp;配置环境变量</p> <p>打开环境变量配置文件</p> <pre><code>vi ~/.bash_profile</code></pre> <p>&nbsp;配置环境变量</p> <pre><code>export MAVEN_HOME=/Library/apache-maven-3.6.2 export PATH=${MAVEN_HOME}/bin:$PATH</code></pre> <p>保存，然后在终端让命令生效一下</p> <pre><code>source ~/.bash_profile</code></pre> <p>4、测试一下环境变量是否已经配置完成。在终端输入一个 mvn -v。如果出现下图则配置成功，如果没有的话，可以去检查一下 路径是否正确，或者版本号名称之类的。</p> <p><img loading="lazy" decoding="async" alt="" height="380" src="http://img.555519.xyz/uploads3/20220603/c6cfd5f653e9fab5b19985de064c7e67.jpg"></p> <p>5、创建本地仓库，在maven文件夹在创建&nbsp;repository 文件夹。</p> <p>6 &nbsp;修改conf下的settings.xml的本地仓库位置和创建maven阿里云镜像仓库配置</p> <pre><code class="language-XML">&lt;localRepository&gt;/Library/apache-maven-3.6.2/repository&lt;/localRepository&gt;    &lt;mirrors&gt;     &lt;mirror&gt;         &lt;id&gt;alimaven&lt;/id&gt;         &lt;name&gt;aliyun maven&lt;/name&gt;         &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;         &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;                &lt;/mirror&gt;    &lt;/mirrors&gt;</code></pre> <p>6 下载依赖</p> <pre><code>mvn help:system</code></pre> <p>下载成功后，你可以发现<strong>repository</strong>里面会有很多的文件 这些文件就是我们从中央仓库下载到本地仓库的文件</p> <h3><strong>配置IntelliJ IDEA</strong></h3> <p><img loading="lazy" decoding="async" alt="" height="1200" src="http://img.555519.xyz/uploads3/20220603/3c7324051a047e97681c4f5daba7637a.jpg"></p> <p>&nbsp;第一个是配置maven的路径</p> <p>&nbsp;第二个是maven配置文件的路径</p> <p>&nbsp;第三个是本地仓库的路径</p> <p></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-79979.htm">家用小型饲料颗粒机价格表（家用小型饲料颗粒机图片视频展示）</a></p>
+                                        <p>下一个：<a href="/news/article-80649.htm">成都宠物领养平台领养可靠吗现在多少钱一天（成都宠物领养网免费）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-58391.htm" title="北京宠物店招聘学徒（北京宠物店招聘信息）">北京宠物店招聘学徒（北京宠物店招聘信息）</a></li>
+                        <li class="py-2"><a href="/news/article-78592.htm" title="PHP魔术方法">PHP魔术方法</a></li>
+                        <li class="py-2"><a href="/news/article-64203.htm" title="美联众合动物医院是加盟吗知乎（美联众合动物医院是国营吗）">美联众合动物医院是加盟吗知乎（美联众合动物医院是国营吗）</a></li>
+                        <li class="py-2"><a href="/news/article-67317.htm" title="猫三联加狂犬一共几针（猫三联 狂犬疫苗）">猫三联加狂犬一共几针（猫三联 狂犬疫苗）</a></li>
+                        <li class="py-2"><a href="/news/article-58390.htm" title="【和弦图】">【和弦图】</a></li>
+                        <li class="py-2"><a href="/news/article-75200.htm" title="动物疫苗企业名单查询官网电话（动物疫苗生产厂家排名）">动物疫苗企业名单查询官网电话（动物疫苗生产厂家排名）</a></li>
+                        <li class="py-2"><a href="/news/article-75876.htm" title="郑州宠物打疫苗在哪里（郑州宠物疫苗批发地址）">郑州宠物打疫苗在哪里（郑州宠物疫苗批发地址）</a></li>
+                        <li class="py-2"><a href="/news/article-71188.htm" title="领养宠物的文章怎么写（领养宠物宣传文字）">领养宠物的文章怎么写（领养宠物宣传文字）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-4-node-share.htm" title="免费Clash节点 | 3月4日18.3M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享">免费Clash节点 | 3月4日18.3M/S|免费V2ray/Clash/Shadowrocket/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-70545.htm" title="宠物粮食代加工厂家有哪些 宠物粮食代加工厂家有哪些地方">宠物粮食代加工厂家有哪些 宠物粮食代加工厂家有哪些地方</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">72</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">36</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Features Area -->
+        <!-- Start Footer Area -->
+    <footer class="footer">
+        <!-- Start Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>免费Clash节点 机场订阅节点官网 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Middle -->
+    </footer>
+    <!--/ End Footer Area -->
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top btn-hover">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/surgemac/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/imagesloaded.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/isotope.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/main.js"></script>
+    <script type="text/javascript">
+    //========= glightbox
+    GLightbox({
+        'href': '#',
+        'type': 'video',
+        'source': 'youtube', //vimeo, youtube or local
+        'width': 900,
+        'autoplayVideos': true,
+    });
+
+    //====== Clients Logo Slider
+    tns({
+        container: '.client-logo-carousel',
+        slideBy: 'page',
+        autoplay: true,
+        autoplayButtonOutput: false,
+        mouseDrag: true,
+        gutter: 15,
+        nav: false,
+        controls: false,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            540: {
+                items: 2,
+            },
+            768: {
+                items: 3,
+            },
+            992: {
+                items: 4,
+            },
+            1170: {
+                items: 6,
+            }
+        }
+    });
+
+    //======== Home Slider
+    var slider = new tns({
+        container: '.home-slider',
+        slideBy: 'page',
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        items: 1,
+        nav: true,
+        controls: false,
+        controlsText: [
+            '<i class="lni lni-arrow-left prev"></i>',
+            '<i class="lni lni-arrow-right next"></i>'
+        ],
+        responsive: {
+            1200: {
+                items: 1,
+            },
+            992: {
+                items: 1,
+            },
+            0: {
+                items: 1,
+            }
+
+        }
+    });
+
+    //======== Testimonial Slider
+    var slider = new tns({
+        container: '.testimonial-slider',
+        slideBy: 'page',
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        items: 1,
+        nav: true,
+        controls: false,
+        controlsText: [
+            '<i class="lni lni-arrow-left prev"></i>',
+            '<i class="lni lni-arrow-right next"></i>'
+        ],
+        responsive: {
+            1200: {
+                items: 2,
+            },
+            992: {
+                items: 1,
+            },
+            0: {
+                items: 1,
+            }
+
+        }
+    });
+
+    //============== isotope masonry js with imagesloaded
+    imagesLoaded('#container', function() {
+        var elem = document.querySelector('.grid');
+        var iso = new Isotope(elem, {
+            // options
+            itemSelector: '.grid-item',
+            masonry: {
+                // use outer width of grid-sizer for columnWidth
+                columnWidth: '.grid-item'
+            }
+        });
+
+        let filterButtons = document.querySelectorAll('.portfolio-btn-wrapper button');
+        filterButtons.forEach(e =>
+            e.addEventListener('click', () => {
+
+                let filterValue = event.target.getAttribute('data-filter');
+                iso.arrange({
+                    filter: filterValue
+                });
+            })
+        );
+    });
+    </script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
