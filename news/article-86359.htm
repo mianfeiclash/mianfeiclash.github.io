@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://mianfeiclash.github.io/news/article-86359.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>mysql 中插入百万条数据</title>
+        <meta name="description" content="文章目录  mysql 中插入百万条数据     1. 创建测试表 2. 开启二进制日志 3. 创建一个生成随机字符串的函数: 4. 调用上边的两个插入函数        原文地址：http://t." />
+        <link rel="icon" href="/assets/website/img/surgemac/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="免费Clash节点 机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mianfeiclash.github.io/news/article-86359.htm" />
+    <meta property="og:site_name" content="免费Clash节点 机场订阅节点官网" />
+    <meta property="og:title" content="mysql 中插入百万条数据" />
+    <meta property="og:image" content="https://mianfeiclash.github.io/uploads/20240731-2/017bccee5bea669ee918c670d362ad4f.webp" />
+        <meta property="og:release_date" content="2025-04-01T09:50:26" />
+    <meta property="og:updated_time" content="2025-04-01T09:50:26" />
+        <meta property="og:description" content="文章目录  mysql 中插入百万条数据     1. 创建测试表 2. 开启二进制日志 3. 创建一个生成随机字符串的函数: 4. 调用上边的两个插入函数        原文地址：http://t." />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="mysql 中插入百万条数据">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Web Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/surgemac/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/glightbox.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/main.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/reset.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/responsive.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6FYYZM5YT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6FYYZM5YT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- /End Preloader -->
+    <!-- ========================= header start ========================= -->
+    <header class="header navbar-area">
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="nav-inner">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                                            <span>免费Clash节点</span>
+                                                        </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/">首页</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/client.htm">客户端</a>
+                                    </li>
+                                                                    </ul>
+                            </div> <!-- navbar collapse -->
+                        </nav> <!-- navbar -->
+                    </div>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </header>
+    <!-- ========================= header end ========================= -->
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content left">
+                        <h1 class="page-title">mysql 中插入百万条数据</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content right">
+                        <ul class="breadcrumb-nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li>正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+        <!-- Start Features Area -->
+    <section class="Features section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-dracula"> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#mysql__1" rel="nofollow">mysql 中插入百万条数据</a></li> <li> <ul> <li> <ul> <li><a href="#1__3" rel="nofollow">1. 创建测试表</a></li> <li><a href="#2__30" rel="nofollow">2. 开启二进制日志</a></li> <li><a href="#3__50" rel="nofollow">3. 创建一个生成随机字符串的函数:</a></li> <li><a href="#4__111" rel="nofollow">4. 调用上边的两个插入函数</a></li> </ul> </li> </ul> </li> </ul> </div> </h1> <p>原文地址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://t.zoukankan.com/GotoJava-p-7116481.html"  rel="nofollow">http://t.zoukankan.com/GotoJava-p-7116481.html</a></p> <h3> <a id="1__3" rel="nofollow"></a>1. 创建测试表</h3> <p><strong>建立部门表和员工表：</strong></p> <ul> <li>部门表:</li> </ul> <pre><code class="prism language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> dept<span class="token punctuation">(</span>   	id <span class="token keyword">int</span> <span class="token keyword">unsigned</span> <span class="token keyword">primary</span> <span class="token keyword">key</span> <span class="token keyword">auto_increment</span><span class="token punctuation">,</span>   	deptno <span class="token keyword">mediumint</span> <span class="token keyword">unsigned</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">default</span> <span class="token number">0</span><span class="token punctuation">,</span>   	dname <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">default</span> <span class="token string">""</span><span class="token punctuation">,</span>   	loc <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">default</span> <span class="token string">""</span>   <span class="token punctuation">)</span><span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">INNODB</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>GBK  </code></pre> <ul> <li>员工表:</li> </ul> <pre><code class="prism language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> emp<span class="token punctuation">(</span>   	id <span class="token keyword">int</span> <span class="token keyword">unsigned</span> <span class="token keyword">primary</span> <span class="token keyword">key</span> <span class="token keyword">auto_increment</span><span class="token punctuation">,</span>   	empno <span class="token keyword">mediumint</span> <span class="token keyword">unsigned</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">default</span> <span class="token number">0</span><span class="token punctuation">,</span>   	ename <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">default</span> <span class="token string">""</span><span class="token punctuation">,</span>   	job <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">default</span> <span class="token string">""</span><span class="token punctuation">,</span>   	mgr <span class="token keyword">mediumint</span>   <span class="token keyword">unsigned</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">default</span> <span class="token number">0</span><span class="token punctuation">,</span>   	hiredate <span class="token keyword">date</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>   	sal <span class="token keyword">decimal</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>   	comm <span class="token keyword">decimal</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>   	deptno <span class="token keyword">mediumint</span> <span class="token keyword">unsigned</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">default</span> <span class="token number">0</span>   <span class="token punctuation">)</span><span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">INNODB</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>GBK  </code></pre> <h3> <a id="2__30" rel="nofollow"></a>2. 开启二进制日志</h3> <ul> <li>查看二进制日志状态</li> </ul> <pre><code class="prism language-sql"><span class="token keyword">show</span> variables <span class="token operator">like</span> <span class="token string">'log_bin_trust_function_creators'</span>   </code></pre> <p>可以看到默认的二进制日志时关闭的</p> <pre><code class="prism language-sql">Variable_name                   <span class="token operator">|</span><span class="token keyword">Value</span> <span class="token operator">|</span>   <span class="token comment">--------------------------------|------|  </span> log_bin_trust_function_creators <span class="token operator">|</span><span class="token keyword">OFF</span>   <span class="token operator">|</span>   </code></pre> <p>通过下面的命令进行临时设置:</p> <pre><code class="prism language-sql"><span class="token keyword">set</span> <span class="token keyword">global</span> log_bin_trust_function_creators<span class="token operator">=</span><span class="token number">1</span>    Variable_name                   <span class="token operator">|</span><span class="token keyword">Value</span> <span class="token operator">|</span>   <span class="token comment">--------------------------------|------|  </span> log_bin_trust_function_creators <span class="token operator">|</span><span class="token keyword">ON</span>    <span class="token operator">|</span>   </code></pre> <h3> <a id="3__50" rel="nofollow"></a>3. 创建一个生成随机字符串的函数:</h3> <pre><code class="prism language-sql"><span class="token keyword">DELIMITER</span> $$   <span class="token keyword">create</span> <span class="token keyword">FUNCTION</span> rand_string<span class="token punctuation">(</span>n <span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token keyword">returns</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span>   <span class="token keyword">BEGIN</span>       <span class="token keyword">declare</span> chars_str <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">'abcdefghijklmnoprstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'</span><span class="token punctuation">;</span>       <span class="token keyword">declare</span> return_str <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span>     <span class="token keyword">default</span> <span class="token string">''</span><span class="token punctuation">;</span>       <span class="token keyword">declare</span> i <span class="token keyword">int</span> <span class="token keyword">default</span> <span class="token number">0</span><span class="token punctuation">;</span>       <span class="token keyword">while</span> i<span class="token operator">&lt;</span>n <span class="token keyword">DO</span>       <span class="token keyword">set</span> return_str<span class="token operator">=</span>CONCAT<span class="token punctuation">(</span>return_str<span class="token punctuation">,</span>substring<span class="token punctuation">(</span>chars_str<span class="token punctuation">,</span>floor<span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">+</span>rand<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">52</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token keyword">set</span> i<span class="token operator">=</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>       <span class="token keyword">end</span> <span class="token keyword">while</span><span class="token punctuation">;</span>       <span class="token keyword">return</span> return_str<span class="token punctuation">;</span>   <span class="token keyword">END</span> $$   </code></pre> <p>通过 <code>DELIMITER</code> 定义 <code>mysql</code> 语句的结束符,因为函数中多处有分号,如果不修改掉默认的结束符;那么函数将会产生错误</p> <p>随后,创建生成随机数的函数:</p> <pre><code class="prism language-sql"><span class="token keyword">delimiter</span> $$   <span class="token keyword">create</span> <span class="token keyword">function</span> rand_num<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">RETURNS</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>   <span class="token keyword">begin</span>        <span class="token keyword">declare</span> i <span class="token keyword">int</span> <span class="token keyword">default</span> <span class="token number">0</span><span class="token punctuation">;</span>       <span class="token keyword">set</span> i<span class="token operator">=</span>floor<span class="token punctuation">(</span><span class="token number">100</span><span class="token operator">+</span>rand<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token keyword">return</span> i<span class="token punctuation">;</span>   <span class="token keyword">end</span> $$   </code></pre> <ul> <li>插入员工表函数:</li> </ul> <pre><code class="prism language-sql"><span class="token keyword">delimiter</span> $$   <span class="token keyword">create</span> <span class="token keyword">procedure</span> insert_emp<span class="token punctuation">(</span><span class="token operator">IN</span> <span class="token keyword">START</span> <span class="token keyword">INT</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">IN</span> max_num <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>   <span class="token keyword">begin</span>        <span class="token keyword">declare</span> i <span class="token keyword">int</span> <span class="token keyword">default</span> <span class="token number">0</span><span class="token punctuation">;</span>       <span class="token keyword">set</span> autocommit<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>       <span class="token keyword">repeat</span>       <span class="token keyword">set</span> i<span class="token operator">=</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>       <span class="token keyword">insert</span> <span class="token keyword">into</span> emp<span class="token punctuation">(</span>empno<span class="token punctuation">,</span>ename<span class="token punctuation">,</span>job<span class="token punctuation">,</span>mgr<span class="token punctuation">,</span>hiredate<span class="token punctuation">,</span>sal<span class="token punctuation">,</span>comm<span class="token punctuation">,</span>deptno<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">start</span><span class="token operator">+</span>i<span class="token punctuation">)</span><span class="token punctuation">,</span>rand_string<span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'SALESMAN'</span><span class="token punctuation">,</span><span class="token number">0001</span><span class="token punctuation">,</span>CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">2000</span><span class="token punctuation">,</span><span class="token number">400</span><span class="token punctuation">,</span>rand_num<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       until i<span class="token operator">=</span>max_num       <span class="token keyword">end</span> <span class="token keyword">repeat</span><span class="token punctuation">;</span>       <span class="token keyword">commit</span><span class="token punctuation">;</span>   <span class="token keyword">end</span> $$   </code></pre> <ul> <li>插入部门的函数:</li> </ul> <pre><code class="prism language-sql"><span class="token keyword">delimiter</span> $$   <span class="token keyword">create</span> <span class="token keyword">procedure</span> insert_dept<span class="token punctuation">(</span><span class="token operator">IN</span> <span class="token keyword">START</span> <span class="token keyword">INT</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">IN</span> max_num <span class="token keyword">INT</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>   <span class="token keyword">begin</span>       <span class="token keyword">declare</span> i <span class="token keyword">int</span> <span class="token keyword">default</span> <span class="token number">0</span><span class="token punctuation">;</span>       <span class="token keyword">set</span> autocommit<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>       <span class="token keyword">repeat</span>       <span class="token keyword">set</span> i<span class="token operator">=</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>       <span class="token keyword">insert</span> <span class="token keyword">into</span> dept<span class="token punctuation">(</span>deptno<span class="token punctuation">,</span>dname<span class="token punctuation">,</span>loc<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">start</span><span class="token operator">+</span>i<span class="token punctuation">)</span><span class="token punctuation">,</span>rand_string<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>rand_string<span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       until i<span class="token operator">=</span>max_num       <span class="token keyword">end</span> <span class="token keyword">repeat</span><span class="token punctuation">;</span>       <span class="token keyword">commit</span><span class="token punctuation">;</span>       <span class="token keyword">end</span> $$   <span class="token keyword">end</span> $$   </code></pre> <h3> <a id="4__111" rel="nofollow"></a>4. 调用上边的两个插入函数</h3> <pre><code class="prism language-sql"><span class="token comment"># 在部门表中插入数据</span> <span class="token keyword">call</span> insert_dept<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token operator">+</span><span class="token comment">----+--------+------------+----------+  </span> <span class="token operator">|</span> id <span class="token operator">|</span> deptno <span class="token operator">|</span> dname      <span class="token operator">|</span> loc      <span class="token operator">|</span>   <span class="token operator">+</span><span class="token comment">----+--------+------------+----------+  </span> <span class="token operator">|</span>  <span class="token number">1</span> <span class="token operator">|</span>    <span class="token number">101</span> <span class="token operator">|</span> OVnDatOMsA <span class="token operator">|</span> BbGYWOaO <span class="token operator">|</span>   <span class="token operator">|</span>  <span class="token number">2</span> <span class="token operator">|</span>    <span class="token number">102</span> <span class="token operator">|</span> PHQffkLYGl <span class="token operator">|</span> mEgXmxza <span class="token operator">|</span>   <span class="token operator">|</span>  <span class="token number">3</span> <span class="token operator">|</span>    <span class="token number">103</span> <span class="token operator">|</span> IljlEhcRXn <span class="token operator">|</span> xvJjUSGz <span class="token operator">|</span>   <span class="token operator">|</span>  <span class="token number">4</span> <span class="token operator">|</span>    <span class="token number">104</span> <span class="token operator">|</span> EwuFUElxBk <span class="token operator">|</span> zNrtSdVl <span class="token operator">|</span>   <span class="token operator">|</span>  <span class="token number">5</span> <span class="token operator">|</span>    <span class="token number">105</span> <span class="token operator">|</span> vtHaksNIb  <span class="token operator">|</span> mdGUBVar <span class="token operator">|</span>   <span class="token operator">|</span>  <span class="token number">6</span> <span class="token operator">|</span>    <span class="token number">106</span> <span class="token operator">|</span> FamifbRZyr <span class="token operator">|</span> ljmJDQso <span class="token operator">|</span>   <span class="token operator">|</span>  <span class="token number">7</span> <span class="token operator">|</span>    <span class="token number">107</span> <span class="token operator">|</span> tYLKrAAbHd <span class="token operator">|</span> ziuuQRKZ <span class="token operator">|</span>   <span class="token operator">|</span>  <span class="token number">8</span> <span class="token operator">|</span>    <span class="token number">108</span> <span class="token operator">|</span> SpXNXzEvmc <span class="token operator">|</span> ByJZUzNo <span class="token operator">|</span>   <span class="token operator">|</span>  <span class="token number">9</span> <span class="token operator">|</span>    <span class="token number">109</span> <span class="token operator">|</span> hXlpSoXPfj <span class="token operator">|</span> HDUNcbT  <span class="token operator">|</span>   <span class="token operator">|</span> <span class="token number">10</span> <span class="token operator">|</span>    <span class="token number">110</span> <span class="token operator">|</span> sfBoRlLUlA <span class="token operator">|</span> OtCCdPIU <span class="token operator">|</span>   <span class="token operator">+</span><span class="token comment">----+--------+------------+----------+  </span> </code></pre> <pre><code class="prism language-sql"><span class="token comment"># 在员工表中插入50W条数据,</span> mysql<span class="token operator">&gt;</span> <span class="token keyword">call</span> insert_emp<span class="token punctuation">(</span><span class="token number">100001</span><span class="token punctuation">,</span><span class="token number">500000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   </code></pre> <p>这样就实现了大量数据的插入</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-85641.htm">动物防疫预防 动物防疫预防为主下一句是什么</a></p>
+                                        <p>下一个：<a href="/news/article-86360.htm">广州领养宠物的平台有哪些（广州有没有领养宠物狗）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-82764.htm" title="正规领养宠物流程表格图（领养宠物程序）">正规领养宠物流程表格图（领养宠物程序）</a></li>
+                        <li class="py-2"><a href="/news/article-86359.htm" title="mysql 中插入百万条数据">mysql 中插入百万条数据</a></li>
+                        <li class="py-2"><a href="/news/article-73179.htm" title="宠物领养网免费平台有哪些呢知乎 宠物领养网免费平台有哪些呢知乎">宠物领养网免费平台有哪些呢知乎 宠物领养网免费平台有哪些呢知乎</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-25-free-v2ray.htm" title="免费Clash节点 | 3月25日19.9M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享">免费Clash节点 | 3月25日19.9M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-69879.htm" title="LVGL PC模拟器安装步骤详解_安装教程">LVGL PC模拟器安装步骤详解_安装教程</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-18-free-v2ray-subscribe.htm" title="免费Clash节点 | 3月18日21.9M/S|免费SSR/Clash/Shadowrocket/V2ray免费节点订阅分享">免费Clash节点 | 3月18日21.9M/S|免费SSR/Clash/Shadowrocket/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-75199.htm" title="开宠物店的利润和风险大吗（开宠物店到底赚不赚钱）">开宠物店的利润和风险大吗（开宠物店到底赚不赚钱）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-17-free-node-subscribe.htm" title="免费Clash节点 | 3月17日22.7M/S|免费Clash/SSR/Shadowrocket/V2ray免费节点订阅分享">免费Clash节点 | 3月17日22.7M/S|免费Clash/SSR/Shadowrocket/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-70545.htm" title="宠物粮食代加工厂家有哪些 宠物粮食代加工厂家有哪些地方">宠物粮食代加工厂家有哪些 宠物粮食代加工厂家有哪些地方</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-10-free-subscribe-node.htm" title="免费Clash节点 | 3月10日19.7M/S|免费Clash/SSR/V2ray/Shadowrocket免费节点订阅分享">免费Clash节点 | 3月10日19.7M/S|免费Clash/SSR/V2ray/Shadowrocket免费节点订阅分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Features Area -->
+        <!-- Start Footer Area -->
+    <footer class="footer">
+        <!-- Start Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>免费Clash节点 机场订阅节点官网 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Middle -->
+    </footer>
+    <!--/ End Footer Area -->
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top btn-hover">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/surgemac/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/imagesloaded.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/isotope.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/main.js"></script>
+    <script type="text/javascript">
+    //========= glightbox
+    GLightbox({
+        'href': '#',
+        'type': 'video',
+        'source': 'youtube', //vimeo, youtube or local
+        'width': 900,
+        'autoplayVideos': true,
+    });
+
+    //====== Clients Logo Slider
+    tns({
+        container: '.client-logo-carousel',
+        slideBy: 'page',
+        autoplay: true,
+        autoplayButtonOutput: false,
+        mouseDrag: true,
+        gutter: 15,
+        nav: false,
+        controls: false,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            540: {
+                items: 2,
+            },
+            768: {
+                items: 3,
+            },
+            992: {
+                items: 4,
+            },
+            1170: {
+                items: 6,
+            }
+        }
+    });
+
+    //======== Home Slider
+    var slider = new tns({
+        container: '.home-slider',
+        slideBy: 'page',
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        items: 1,
+        nav: true,
+        controls: false,
+        controlsText: [
+            '<i class="lni lni-arrow-left prev"></i>',
+            '<i class="lni lni-arrow-right next"></i>'
+        ],
+        responsive: {
+            1200: {
+                items: 1,
+            },
+            992: {
+                items: 1,
+            },
+            0: {
+                items: 1,
+            }
+
+        }
+    });
+
+    //======== Testimonial Slider
+    var slider = new tns({
+        container: '.testimonial-slider',
+        slideBy: 'page',
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        items: 1,
+        nav: true,
+        controls: false,
+        controlsText: [
+            '<i class="lni lni-arrow-left prev"></i>',
+            '<i class="lni lni-arrow-right next"></i>'
+        ],
+        responsive: {
+            1200: {
+                items: 2,
+            },
+            992: {
+                items: 1,
+            },
+            0: {
+                items: 1,
+            }
+
+        }
+    });
+
+    //============== isotope masonry js with imagesloaded
+    imagesLoaded('#container', function() {
+        var elem = document.querySelector('.grid');
+        var iso = new Isotope(elem, {
+            // options
+            itemSelector: '.grid-item',
+            masonry: {
+                // use outer width of grid-sizer for columnWidth
+                columnWidth: '.grid-item'
+            }
+        });
+
+        let filterButtons = document.querySelectorAll('.portfolio-btn-wrapper button');
+        filterButtons.forEach(e =>
+            e.addEventListener('click', () => {
+
+                let filterValue = event.target.getAttribute('data-filter');
+                iso.arrange({
+                    filter: filterValue
+                });
+            })
+        );
+    });
+    </script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
