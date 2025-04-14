@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://mianfeiclash.github.io/news/article-95941.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>远程调用Feign</title>
+        <meta name="description" content="远程调用 Feign 什么是Feign Feign 是Springcloud 提供一个声明式的伪Http客户端 它使得调用远程服务就像调用本地服务一样简单 只需要创建一个接口 并且添加注解就可以 Na" />
+        <link rel="icon" href="/assets/website/img/surgemac/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="免费Clash节点 机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mianfeiclash.github.io/news/article-95941.htm" />
+    <meta property="og:site_name" content="免费Clash节点 机场订阅节点官网" />
+    <meta property="og:title" content="远程调用Feign" />
+    <meta property="og:image" content="https://mianfeiclash.github.io/uploads/20240731-2/156937973a6c1fdd92946f007fb83416.webp" />
+        <meta property="og:release_date" content="2025-04-14T08:04:11" />
+    <meta property="og:updated_time" content="2025-04-14T08:04:11" />
+        <meta property="og:description" content="远程调用 Feign 什么是Feign Feign 是Springcloud 提供一个声明式的伪Http客户端 它使得调用远程服务就像调用本地服务一样简单 只需要创建一个接口 并且添加注解就可以 Na" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="远程调用Feign">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Web Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/surgemac/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/glightbox.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/main.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/reset.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/responsive.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6FYYZM5YT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6FYYZM5YT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- /End Preloader -->
+    <!-- ========================= header start ========================= -->
+    <header class="header navbar-area">
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="nav-inner">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                                            <span>免费Clash节点</span>
+                                                        </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/">首页</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/client.htm">客户端</a>
+                                    </li>
+                                                                    </ul>
+                            </div> <!-- navbar collapse -->
+                        </nav> <!-- navbar -->
+                    </div>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </header>
+    <!-- ========================= header end ========================= -->
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content left">
+                        <h1 class="page-title">远程调用Feign</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content right">
+                        <ul class="breadcrumb-nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li>正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+        <!-- Start Features Area -->
+    <section class="Features section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> <h4><a id="_Feign_0" rel="nofollow"></a>远程调用 Feign</h4> <h5><a id="Feign_2" rel="nofollow"></a>什么是Feign</h5> <p><strong>Feign 是Springcloud 提供一个声明式的伪Http客户端 它使得调用远程服务就像调用本地服务一样简单 只需要创建一个接口 并且添加注解就可以 Nacos 很好的兼容Feign Feign 默认集成了Ribbon 所以在Nacos 下使用Fegin 默认就实现了负载均衡的效果</strong></p> <h5><a id="Feign_6" rel="nofollow"></a>如何集成Feign</h5> <p>1.0 三板斧操作</p> <p>2.0 加依赖</p> <pre><code class="prism language-java"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>fegin组件<span class="token operator">--</span><span class="token operator">&gt;</span><span class="token generics function"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span><span class="token generics function"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span><span class="token generics function"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>spring<span class="token operator">-</span>cloud<span class="token operator">-</span>starter<span class="token operator">-</span>openfeign<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span></code></pre> <p>3.0 使用注解 这个远程调用需要写接口</p> <pre><code class="prism language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>itzhouwei<span class="token punctuation">.</span>shop<span class="token punctuation">.</span>order<span class="token punctuation">.</span>feign<span class="token punctuation">;</span><span class="token keyword">import</span> com<span class="token punctuation">.</span>itzhouwei<span class="token punctuation">.</span>shop<span class="token punctuation">.</span>domain<span class="token punctuation">.</span>Product<span class="token punctuation">;</span><span class="token keyword">import</span> com<span class="token punctuation">.</span>itzhouwei<span class="token punctuation">.</span>shop<span class="token punctuation">.</span>order<span class="token punctuation">.</span>feign<span class="token punctuation">.</span>facback<span class="token punctuation">.</span>ProductFeignFacback<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>client<span class="token punctuation">.</span>loadbalancer<span class="token punctuation">.</span>LoadBalanced<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cloud<span class="token punctuation">.</span>openfeign<span class="token punctuation">.</span>FeignClient<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>GetMapping<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RequestMapping<span class="token punctuation">;</span><span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>RequestParam<span class="token punctuation">;</span><span class="token comment">/****  * 使用FeignApi  调用  */</span><span class="token annotation punctuation">@FeignClient</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"product-service"</span><span class="token punctuation">)</span><span class="token keyword">public</span><span class="token keyword">interface</span><span class="token class-name">ProductFeignApi</span><span class="token punctuation">{<!-- --></span><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"product"</span><span class="token punctuation">)</span>      Product<span class="token function">findByPid</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span><span class="token string">"pid"</span><span class="token punctuation">)</span> Long pid<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre> <p>4.0 在启动类上开启远程调用</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@SpringBootApplication</span><span class="token annotation punctuation">@EnableDiscoveryClient</span><span class="token annotation punctuation">@EnableFeignClients</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">OrderServer</span><span class="token punctuation">{<!-- --></span><span class="token keyword">public</span><span class="token keyword">static</span><span class="token keyword">void</span><span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         SpringApplication<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>OrderServer<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <p>5.0 修改OrderServiceImpl.java的远程调用方法</p> <pre><code class="prism language-java"><span class="token annotation punctuation">@Service</span><span class="token annotation punctuation">@Slf4j</span><span class="token keyword">public</span><span class="token keyword">class</span><span class="token class-name">OrderServiceImpl</span><span class="token keyword">implements</span><span class="token class-name">OrderService</span><span class="token punctuation">{<!-- --></span><span class="token annotation punctuation">@Autowired</span><span class="token keyword">private</span> OrderDao orderDao<span class="token punctuation">;</span><span class="token annotation punctuation">@Autowired</span><span class="token keyword">private</span> ProductFeignApi productFeignApi<span class="token punctuation">;</span><span class="token comment">//把它注入</span><span class="token annotation punctuation">@Override</span><span class="token keyword">public</span> Order<span class="token function">createOrder</span><span class="token punctuation">(</span>Long productId<span class="token punctuation">,</span>Long userId<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"接收到{}号商品的下单请求,接下来调用商品微服务查询此商品信息"</span><span class="token punctuation">,</span> productId<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//远程调用商品微服务,查询商品信息</span>         Product product<span class="token operator">=</span> productFeignApi<span class="token punctuation">.</span><span class="token function">findByPid</span><span class="token punctuation">(</span>productId<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//调方法就可</span>         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"查询到{}号商品的信息,内容是:{}"</span><span class="token punctuation">,</span> productId<span class="token punctuation">,</span> JSON<span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>product<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//创建订单并保存</span>         Order order<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">Order</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         order<span class="token punctuation">.</span><span class="token function">setUid</span><span class="token punctuation">(</span>userId<span class="token punctuation">)</span><span class="token punctuation">;</span>         order<span class="token punctuation">.</span><span class="token function">setUsername</span><span class="token punctuation">(</span><span class="token string">"zw"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         order<span class="token punctuation">.</span><span class="token function">setPid</span><span class="token punctuation">(</span>productId<span class="token punctuation">)</span><span class="token punctuation">;</span>         order<span class="token punctuation">.</span><span class="token function">setPname</span><span class="token punctuation">(</span>product<span class="token punctuation">.</span><span class="token function">getPname</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         order<span class="token punctuation">.</span><span class="token function">setPprice</span><span class="token punctuation">(</span>product<span class="token punctuation">.</span><span class="token function">getPprice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         order<span class="token punctuation">.</span><span class="token function">setNumber</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         orderDao<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>order<span class="token punctuation">)</span><span class="token punctuation">;</span>         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"创建订单成功,订单信息为{}"</span><span class="token punctuation">,</span> JSON<span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>order<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> order<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> <h5><a id="Feign__87" rel="nofollow"></a>Feign 调用原理</h5> <p>底层使用了建造者和代理设计模式等等</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221201/8e4b13d03f02f071f992feadc448e2ff.jpg" alt="远程调用Feign"></p> <p>简单来说 调用原理 我简单理解为</p> <ol> <li>通过反射机制拿到当前代理类实现的接口XXXFeignApi</li> <li>接口通过反射方式拿到接口上的注解<code>@FeignClient(name = "product-service")</code> 取出该注解中的值</li> <li>通过反射拿到接口中的方法上面的注解<code>@GetMapping("product")</code> 进行取出值</li> <li>通过反射拿接口中方法参数注解<code>@RequestParam("pid")</code>取出值</li> <li>进行拼接路径 URL地址</li> <li>根据服务的名字去注册中心去找到节点信息</li> <li>根据你配置的负载均衡策略 选择一个节点</li> <li>把路径中的服务名字替换掉ip:prot 信息</li> <li>使用RestTemplat 取发送http 请求</li> </ol> <h5><a id="Feign__105" rel="nofollow"></a>Feign 超时配置</h5> <p>在服务调用端 去加上这段配置 该配置是在顶级下 并不是在cloud 下面 建议使用下面这个最终的配置</p> <pre><code class="prism language-yml"><span class="token key atrule">feign</span><span class="token punctuation">:</span><span class="token key atrule">client</span><span class="token punctuation">:</span><span class="token key atrule">config</span><span class="token punctuation">:</span><span class="token key atrule">default</span><span class="token punctuation">:</span><span class="token key atrule">connectTimeout</span><span class="token punctuation">:</span><span class="token number">5000</span><span class="token key atrule">readTimeout</span><span class="token punctuation">:</span><span class="token number">5000</span><span class="token key atrule">product-service</span><span class="token punctuation">:</span><span class="token comment"># 调用的提供者的名称</span><span class="token comment">#配置首台服务器重试1次</span><span class="token key atrule">MaxAutoRetries</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token comment">#配置其他服务器重试两次</span><span class="token key atrule">MaxAutoRetriesNextServer</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token comment">#链接超时时间</span><span class="token key atrule">ConnectTimeout</span><span class="token punctuation">:</span><span class="token number">500</span><span class="token comment">#请求处理时间</span><span class="token key atrule">ReadTimeout</span><span class="token punctuation">:</span><span class="token number">2000</span><span class="token comment">#每个操作都开启重试机制</span><span class="token key atrule">OkToRetryOnAllOperations</span><span class="token punctuation">:</span><span class="token boolean important">true</span><span class="token key atrule">NFLoadBalancerRuleClassName</span><span class="token punctuation">:</span> com.netflix.loadbalancer.RandomRule</code></pre> <h5><a id="Feign__130" rel="nofollow"></a>Feign 重试次数配置</h5> <p>在服务调用端 去加上这个段配置 使用这个最终的配置</p> <pre><code class="prism language-yml"><span class="token key atrule">product-service</span><span class="token punctuation">:</span><span class="token comment"># 调用的提供者的名称</span><span class="token key atrule">ribbon</span><span class="token punctuation">:</span><span class="token comment">#配置首台服务器重试1次</span><span class="token key atrule">MaxAutoRetries</span><span class="token punctuation">:</span><span class="token number">1</span><span class="token comment">#配置其他服务器重试两次</span><span class="token key atrule">MaxAutoRetriesNextServer</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token comment">#链接超时时间</span><span class="token key atrule">ConnectTimeout</span><span class="token punctuation">:</span><span class="token number">500</span><span class="token comment">#请求处理时间</span><span class="token key atrule">ReadTimeout</span><span class="token punctuation">:</span><span class="token number">2000</span><span class="token comment">#每个操作都开启重试机制</span><span class="token key atrule">OkToRetryOnAllOperations</span><span class="token punctuation">:</span><span class="token boolean important">true</span><span class="token key atrule">NFLoadBalancerRuleClassName</span><span class="token punctuation">:</span> com.netflix.loadbalancer.RandomRule</code></pre> <p>这里需要你注意的一点是，如果你同时配置了全局超时规则和针对某个特定服务的超时规则，那么后者的配置会覆盖全局配置，并且优先生效</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-95211.htm">动物疫苗的种类和制备原理是什么意思（动物疫苗的种类和制备原理是什么意思啊）</a></p>
+                                        <p>下一个：<a href="/news/article-95943.htm">Azure DevOps通过Azure Devops部署一个.NET Core WebAPI</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-89988.htm" title="无货源闲鱼卖货流程（闲鱼无货源怎么玩）">无货源闲鱼卖货流程（闲鱼无货源怎么玩）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-10-free-subscribe-node.htm" title="免费Clash节点 | 3月10日19.7M/S|免费Clash/SSR/V2ray/Shadowrocket免费节点订阅分享">免费Clash节点 | 3月10日19.7M/S|免费Clash/SSR/V2ray/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-13-free-high-speed-nodes.htm" title="免费Clash节点 | 4月13日19.2M/S|免费SSR/Shadowrocket/V2ray/Clash免费节点订阅分享">免费Clash节点 | 4月13日19.2M/S|免费SSR/Shadowrocket/V2ray/Clash免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-free-v2ray-subscribe.htm" title="免费Clash节点 | 3月13日21.6M/S|免费Shadowrocket/V2ray/Clash/SSR免费节点订阅分享">免费Clash节点 | 3月13日21.6M/S|免费Shadowrocket/V2ray/Clash/SSR免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-69230.htm" title="延农动物医院怎么样收费（延农宠物医院）">延农动物医院怎么样收费（延农宠物医院）</a></li>
+                        <li class="py-2"><a href="/news/article-80648.htm" title="Mac下配置Maven以及IDEA Maven配置">Mac下配置Maven以及IDEA Maven配置</a></li>
+                        <li class="py-2"><a href="/news/article-67320.htm" title="动物诊疗机构违反本法规定（动物诊疗机构管理办法立法依据）">动物诊疗机构违反本法规定（动物诊疗机构管理办法立法依据）</a></li>
+                        <li class="py-2"><a href="/news/article-77236.htm" title="CoreWCF 1.0.0 发布，微软正式支持WCF_在线工具">CoreWCF 1.0.0 发布，微软正式支持WCF_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-95211.htm" title="动物疫苗的种类和制备原理是什么意思（动物疫苗的种类和制备原理是什么意思啊）">动物疫苗的种类和制备原理是什么意思（动物疫苗的种类和制备原理是什么意思啊）</a></li>
+                        <li class="py-2"><a href="/news/article-77235.htm" title="弹层-自定义拖拽指令">弹层-自定义拖拽指令</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Features Area -->
+        <!-- Start Footer Area -->
+    <footer class="footer">
+        <!-- Start Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p>免费Clash节点 机场订阅节点官网 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Middle -->
+    </footer>
+    <!--/ End Footer Area -->
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top btn-hover">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/surgemac/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/imagesloaded.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/isotope.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/main.js"></script>
+    <script type="text/javascript">
+    //========= glightbox
+    GLightbox({
+        'href': '#',
+        'type': 'video',
+        'source': 'youtube', //vimeo, youtube or local
+        'width': 900,
+        'autoplayVideos': true,
+    });
+
+    //====== Clients Logo Slider
+    tns({
+        container: '.client-logo-carousel',
+        slideBy: 'page',
+        autoplay: true,
+        autoplayButtonOutput: false,
+        mouseDrag: true,
+        gutter: 15,
+        nav: false,
+        controls: false,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            540: {
+                items: 2,
+            },
+            768: {
+                items: 3,
+            },
+            992: {
+                items: 4,
+            },
+            1170: {
+                items: 6,
+            }
+        }
+    });
+
+    //======== Home Slider
+    var slider = new tns({
+        container: '.home-slider',
+        slideBy: 'page',
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        items: 1,
+        nav: true,
+        controls: false,
+        controlsText: [
+            '<i class="lni lni-arrow-left prev"></i>',
+            '<i class="lni lni-arrow-right next"></i>'
+        ],
+        responsive: {
+            1200: {
+                items: 1,
+            },
+            992: {
+                items: 1,
+            },
+            0: {
+                items: 1,
+            }
+
+        }
+    });
+
+    //======== Testimonial Slider
+    var slider = new tns({
+        container: '.testimonial-slider',
+        slideBy: 'page',
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        items: 1,
+        nav: true,
+        controls: false,
+        controlsText: [
+            '<i class="lni lni-arrow-left prev"></i>',
+            '<i class="lni lni-arrow-right next"></i>'
+        ],
+        responsive: {
+            1200: {
+                items: 2,
+            },
+            992: {
+                items: 1,
+            },
+            0: {
+                items: 1,
+            }
+
+        }
+    });
+
+    //============== isotope masonry js with imagesloaded
+    imagesLoaded('#container', function() {
+        var elem = document.querySelector('.grid');
+        var iso = new Isotope(elem, {
+            // options
+            itemSelector: '.grid-item',
+            masonry: {
+                // use outer width of grid-sizer for columnWidth
+                columnWidth: '.grid-item'
+            }
+        });
+
+        let filterButtons = document.querySelectorAll('.portfolio-btn-wrapper button');
+        filterButtons.forEach(e =>
+            e.addEventListener('click', () => {
+
+                let filterValue = event.target.getAttribute('data-filter');
+                iso.arrange({
+                    filter: filterValue
+                });
+            })
+        );
+    });
+    </script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

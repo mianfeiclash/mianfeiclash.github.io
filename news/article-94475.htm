@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://mianfeiclash.github.io/news/article-94475.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>spring和springMVC整合父子容器问题：整合Spring时Service层为什么不做全局包扫描详解</title>
+        <meta name="description" content="一、Spring和SpringMVC的父子容器关系 1.讲问题之前要先明白一个关系 一般来说，我们在整合Spring和SpringMVC这两个框架中，web.xml会这样写到：    &lt;!-- " />
+        <link rel="icon" href="/assets/website/img/surgemac/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="免费Clash节点 机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mianfeiclash.github.io/news/article-94475.htm" />
+    <meta property="og:site_name" content="免费Clash节点 机场订阅节点官网" />
+    <meta property="og:title" content="spring和springMVC整合父子容器问题：整合Spring时Service层为什么不做全局包扫描详解" />
+    <meta property="og:image" content="https://mianfeiclash.github.io/uploads/20240731-2/5e604d7a5617fac2dd1cce3c868525ef.webp" />
+        <meta property="og:release_date" content="2025-04-12T08:59:25" />
+    <meta property="og:updated_time" content="2025-04-12T08:59:25" />
+        <meta property="og:description" content="一、Spring和SpringMVC的父子容器关系 1.讲问题之前要先明白一个关系 一般来说，我们在整合Spring和SpringMVC这两个框架中，web.xml会这样写到：    &lt;!-- " />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="spring和springMVC整合父子容器问题：整合Spring时Service层为什么不做全局包扫描详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Web Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/surgemac/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/glightbox.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/main.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/reset.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/responsive.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6FYYZM5YT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6FYYZM5YT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- /End Preloader -->
+    <!-- ========================= header start ========================= -->
+    <header class="header navbar-area">
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="nav-inner">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                                            <span>免费Clash节点</span>
+                                                        </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/">首页</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/client.htm">客户端</a>
+                                    </li>
+                                                                    </ul>
+                            </div> <!-- navbar collapse -->
+                        </nav> <!-- navbar -->
+                    </div>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </header>
+    <!-- ========================= header end ========================= -->
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content left">
+                        <h1 class="page-title">spring和springMVC整合父子容器问题：整合Spring时Service层为什么不做全局包扫描详解</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content right">
+                        <ul class="breadcrumb-nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li>正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+        <!-- Start Features Area -->
+    <section class="Features section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				</h1> <h2 id="一spring和springmvc的父子容器关系"><a name="t1" rel="nofollow"></a>一、Spring和<a class="hl hl-1" href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://so.csdn.net/so/search?q=SpringMVC&amp;spm=1001.2101.3001.7020"  target="_blank" data-report-click="{&quot;spm&quot;:&quot;1001.2101.3001.7020&quot;,&quot;dest&quot;:&quot;https://so.csdn.net/so/search?q=SpringMVC&amp;spm=1001.2101.3001.7020&quot;}" data-tit="SpringMVC" data-pretit="springmvc" rel="nofollow">SpringMVC</a>的父子容器关系</h2> <p>1.讲问题之前要先明白一个关系</p> <p>一般来说，我们在整合Spring和SpringMVC这两个框架中，web.xml会这样写到：</p> <div class="cnblogs_code"> <pre>  &lt;!-- 加载spring容器 --&gt;   &lt;!-- 初始化加载application.xml的各种配置文件 --&gt;   &lt;context-param&gt;     &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;     &lt;param-value&gt;classpath:spring/application-*.xml&lt;/param-value&gt;   &lt;/context-param&gt;   &lt;listener&gt;     &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;   &lt;/listener&gt;    &lt;!-- 配置springmvc前端控制器 --&gt;   &lt;servlet&gt;     &lt;servlet-name&gt;taotao-manager&lt;/servlet-name&gt;     &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;     &lt;!--<span> contextConfigLocation不是必须的， 如果不配置contextConfigLocation，      springmvc的配置文件默认在：WEB-INF/servlet的name+"-servlet.xml" --&gt;     &lt;init-param&gt;         &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;         &lt;param-value&gt;classpath:spring/springmvc.xml&lt;/param-value&gt;     &lt;/init-param&gt;     &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;   &lt;/servlet&gt;</span></pre> </div> <p><strong>首先配置的是Spring容器的初始化加载的application文件，然后是SpringMVC的前端控制器（DispatchServlet），当配置完DispatchServlet后会在Spring容器中创建一个新的容器。其实这是两个容器，Spring作为父容器，SpringMVC作为子容器。</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6f7a00e0dd92ddf49582d5bbf7ca0b4b.jpg" alt="spring和springMVC整合父子容器问题：整合Spring时Service层为什么不做全局包扫描详解"></p> <p>平时我们在项目中注入关系是这样的顺序（结合图来说）：在Service中注入Dao（初始化自动注入，利用@Autowired），接着在Controller里注入Service（初始化自动注入，利用@Autowired），看图，这就意味这作为SpringMVC的子容器是可以访问父容器Spring对象的。</p> <p>么问大家一个问题。要是反过来呢，你把Controller注入到Service中能行么？<br />肯定是不行的啊！(如图，这也说明了父容器是不能调用子容器对象的)</p> <p>如果Dao,Serive,Controller要是都在Spring容器中，无疑上边的问题是肯定的，因为都是在一个bean里，一个容器中。</p> <p><strong>2.问题：为什么不能在Spring中的Service层配置全局扫描？</strong></p> <p>例如：一个项目中我总项目的名字叫com.shop，我们在配置applicationContext-service.xml中，包扫描代码如下：</p> <div class="cnblogs_code"> <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;beans xmlns="http://www.springframework.org/schema/beans"<span>     xmlns:context="http://www.springframework.org/schema/context"<span>      ...../ 此处省略&gt;      &lt;!-- 扫描包Service实现类 --&gt;     &lt;context:component-scan base-package="com.shop.service"&gt;&lt;/context:component-scan&gt; &lt;/beans&gt;</span></span></pre> </div> <p>上面所配置的是一个局部扫描，而不是全局扫描。接下来说原因：</p> <p>这里就和上面讲到的父子容器有关系，假设我们做了全局扫描那么代码如下：</p> <div class="cnblogs_Highlighter"> <pre class="brush:csharp;gutter:true;">?xml version="1.0" encoding="UTF-8"?&gt; &lt;beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" ...../ 此处省略&gt;     &lt;!-- 扫描包Service实现类 --&gt; &lt;context:component-scan base-package="com.shop"&gt;&lt;/context:component-scan&gt; &lt;/beans&gt;</pre> </div> <p>此时的Spring容器中就会扫描到@Controller,@Service,@Reposity,@Component,此时的图如下</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/8c824aef20d95c34fa74ad8b2b0dd92c.jpg" alt="spring和springMVC整合父子容器问题：整合Spring时Service层为什么不做全局包扫描详解"></p> <p>结合图去看，相当于他们都会放到大的容器中，而这时的SpringMVC容器中没有对象，没有对象就没有Controller，所以加载处理器，适配器的时候就会找不到映射对象，映射关系，因此在页面上就会出现404的错误。</p> <p>3.如果不用Spring容器，直接把所有层放入SpringMVC容器中可不可以？</p> <p>　　当然可以，如果没有Spring容器，我们是可以把所有层放入SpringMVC的。单独使用这个容器是完全可以的，而且是轻量级的。</p> <p>4.那么为什么我们在项目中还要联合用到Spring容器和SpringMVC容器？</p> <p>　　答案是： Spring的扩展性，如果要是项目需要加入Struts等可以整合进来，便于扩展框架。如果要是为了快，为了方便开发，完全可以用SpringMVC框架。</p> <p>5.结论</p> <p>　　如果在项目中我们在Service层做全局包扫描，那么springmvc不能提供服务，因为springmvc子容器中没有controller对象。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-94474.htm">java使用poi生成excel</a></p>
+                                        <p>下一个：<a href="/news/article-95210.htm">【Java分享客栈】一文搞定京东零售开源的AsyncTool，彻底解决异步编排问题</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-77918.htm" title="东北农业大学动物医学院附属医院 东北农业大学动物医学院附属医院电话">东北农业大学动物医学院附属医院 东北农业大学动物医学院附属医院电话</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-2-node-share-links.htm" title="免费Clash节点 | 4月2日22.2M/S|免费Clash/V2ray/SSR/Shadowrocket免费节点订阅分享">免费Clash节点 | 4月2日22.2M/S|免费Clash/V2ray/SSR/Shadowrocket免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-66684.htm" title="猫科医院内部结构图（猫专科医院介绍）">猫科医院内部结构图（猫专科医院介绍）</a></li>
+                        <li class="py-2"><a href="/news/article-87077.htm" title="做梦梦到抱别的女人睡觉好不好（做梦梦见抱着别的女人）">做梦梦到抱别的女人睡觉好不好（做梦梦见抱着别的女人）</a></li>
+                        <li class="py-2"><a href="/news/article-78592.htm" title="PHP魔术方法">PHP魔术方法</a></li>
+                        <li class="py-2"><a href="/news/article-91397.htm" title="不能养狗的人（不能养狗的人怎么办）">不能养狗的人（不能养狗的人怎么办）</a></li>
+                        <li class="py-2"><a href="/news/article-92202.htm" title="王允海动物医院简介资料（王允武医生）">王允海动物医院简介资料（王允武医生）</a></li>
+                        <li class="py-2"><a href="/news/article-72508.htm" title="聊城宠物用品生产基地（山东聊城宠物产业基地）">聊城宠物用品生产基地（山东聊城宠物产业基地）</a></li>
+                        <li class="py-2"><a href="/news/article-67931.htm" title="Pandas大数据量内存优化">Pandas大数据量内存优化</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-7-free-node-subscribe-links.htm" title="免费Clash节点 | 3月7日21.7M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享">免费Clash节点 | 3月7日21.7M/S|免费Clash/Shadowrocket/V2ray/SSR免费节点订阅分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Features Area -->
+        <!-- Start Footer Area -->
+    <footer class="footer">
+        <!-- Start Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p>免费Clash节点 机场订阅节点官网 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Middle -->
+    </footer>
+    <!--/ End Footer Area -->
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top btn-hover">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/surgemac/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/imagesloaded.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/isotope.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/main.js"></script>
+    <script type="text/javascript">
+    //========= glightbox
+    GLightbox({
+        'href': '#',
+        'type': 'video',
+        'source': 'youtube', //vimeo, youtube or local
+        'width': 900,
+        'autoplayVideos': true,
+    });
+
+    //====== Clients Logo Slider
+    tns({
+        container: '.client-logo-carousel',
+        slideBy: 'page',
+        autoplay: true,
+        autoplayButtonOutput: false,
+        mouseDrag: true,
+        gutter: 15,
+        nav: false,
+        controls: false,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            540: {
+                items: 2,
+            },
+            768: {
+                items: 3,
+            },
+            992: {
+                items: 4,
+            },
+            1170: {
+                items: 6,
+            }
+        }
+    });
+
+    //======== Home Slider
+    var slider = new tns({
+        container: '.home-slider',
+        slideBy: 'page',
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        items: 1,
+        nav: true,
+        controls: false,
+        controlsText: [
+            '<i class="lni lni-arrow-left prev"></i>',
+            '<i class="lni lni-arrow-right next"></i>'
+        ],
+        responsive: {
+            1200: {
+                items: 1,
+            },
+            992: {
+                items: 1,
+            },
+            0: {
+                items: 1,
+            }
+
+        }
+    });
+
+    //======== Testimonial Slider
+    var slider = new tns({
+        container: '.testimonial-slider',
+        slideBy: 'page',
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        items: 1,
+        nav: true,
+        controls: false,
+        controlsText: [
+            '<i class="lni lni-arrow-left prev"></i>',
+            '<i class="lni lni-arrow-right next"></i>'
+        ],
+        responsive: {
+            1200: {
+                items: 2,
+            },
+            992: {
+                items: 1,
+            },
+            0: {
+                items: 1,
+            }
+
+        }
+    });
+
+    //============== isotope masonry js with imagesloaded
+    imagesLoaded('#container', function() {
+        var elem = document.querySelector('.grid');
+        var iso = new Isotope(elem, {
+            // options
+            itemSelector: '.grid-item',
+            masonry: {
+                // use outer width of grid-sizer for columnWidth
+                columnWidth: '.grid-item'
+            }
+        });
+
+        let filterButtons = document.querySelectorAll('.portfolio-btn-wrapper button');
+        filterButtons.forEach(e =>
+            e.addEventListener('click', () => {
+
+                let filterValue = event.target.getAttribute('data-filter');
+                iso.arrange({
+                    filter: filterValue
+                });
+            })
+        );
+    });
+    </script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
