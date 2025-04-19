@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://mianfeiclash.github.io/news/article-96687.htm" />
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Blazor组件的生命周期解析_实用技巧_</title>
+        <meta name="description" content="执行周期  1. SetParametersAsync 2. OnInitializedAsync（调用两次） 和 OnInitialized； 3. OnParametersSetAsync 或 O" />
+        <link rel="icon" href="/assets/website/img/surgemac/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="免费Clash节点 机场订阅节点官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://mianfeiclash.github.io/news/article-96687.htm" />
+    <meta property="og:site_name" content="免费Clash节点 机场订阅节点官网" />
+    <meta property="og:title" content="Blazor组件的生命周期解析_实用技巧_" />
+    <meta property="og:image" content="https://mianfeiclash.github.io/uploads/20240731-2/9a6cf171f940eb0c9e991d6f421c5fea.webp" />
+        <meta property="og:release_date" content="2025-04-15T06:02:09" />
+    <meta property="og:updated_time" content="2025-04-15T06:02:09" />
+        <meta property="og:description" content="执行周期  1. SetParametersAsync 2. OnInitializedAsync（调用两次） 和 OnInitialized； 3. OnParametersSetAsync 或 O" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Blazor组件的生命周期解析_实用技巧_">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Web Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="/assets/website/css/surgemac/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/animate.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/tiny-slider.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/glightbox.min.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/main.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/reset.css" />
+    <link rel="stylesheet" href="/assets/website/css/surgemac/responsive.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6FYYZM5YT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6FYYZM5YT');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- /End Preloader -->
+    <!-- ========================= header start ========================= -->
+    <header class="header navbar-area">
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="nav-inner">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                                            <span>免费Clash节点</span>
+                                                        </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/">首页</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/free-nodes/">免费节点</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/paid-subscribe/">推荐机场</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/news/">新闻资讯</a>
+                                    </li>
+                                                                        <li class="nav-item">
+                                        <a class="page-scroll" href="/client.htm">客户端</a>
+                                    </li>
+                                                                    </ul>
+                            </div> <!-- navbar collapse -->
+                        </nav> <!-- navbar -->
+                    </div>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </header>
+    <!-- ========================= header end ========================= -->
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content left">
+                        <h1 class="page-title">Blazor组件的生命周期解析_实用技巧_</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content right">
+                        <ul class="breadcrumb-nav">
+                            <li><a href="/">首页</a></li>
+                            <li><a href="/news/">新闻资讯</a></li>
+                            <li>正文</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+        <!-- Start Features Area -->
+    <section class="Features section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Meta免费节点订阅站" data-url="https://clash-meta.github.io">
+                  				  				  				<h2>执行周期</h2> <ul> <li>1. SetParametersAsync</li> <li>2. OnInitializedAsync（调用两次） 和 OnInitialized；</li> <li>3. OnParametersSetAsync 或 OnParametersSet；</li> <li>4. OnAfterRenderAsync 和 OnAfterRender；</li> <li>5. 每次组件呈现都会调用ShouldRender；</li> </ul> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220415/c97a51ad50508880f95a28c255c37aad.jpg"></p> <h2>各周期解析</h2> <h3>SetParametersAsync</h3> <p>每次调用 SetParametersAsync 时，ParameterView 都包含整个参数值集。</p> <p>SetParametersAsync 的默认实现使用 [Parameter] 或 [CascadingParameter] 特性（在 ParameterView 中具有对应的值）设置每个属性的值。 在 ParameterView 中没有对应值的参数保持不变。</p> <p>如果未调用 base.SetParametersAync，则自定义代码可使用任何需要的方式解释传入的参数值。 例如，不要求将传入参数分配给类的属性。</p> <p>如果设置有事件处理程序，处置时会将其解除挂接。 有关详细信息，请参阅使用 IDisposable 处置组件部分。</p> <div class="ay1code"> <pre class="brush:csharp;">public override async Task SetParametersAsync(ParameterView parameters)  {      await ...        await base.SetParametersAsync(parameters);  }</pre> </div> <h3>OnInitializedAsync 和 OnInitialized</h3> <p>SetParametersAsync 中的组件在从其父组件接收初始参数后初始化，此时，将调用 OnInitializedAsync 和 OnInitialized。</p> <p>在组件执行异步操作时使用 OnInitializedAsync，并应在操作完成后刷新。</p> <p>对于同步操作，替代 OnInitialized：</p> <p>预呈现其内容的 Blazor Server 应用调用 OnInitializedAsync 两次：</p> <ul> <li> <p>在组件最初作为页面的一部分静态呈现时调用一次。</p> </li> <li> <p>在浏览器重新建立与服务器的连接时调用第二次。</p> </li> </ul> <p>为了防止 OnInitializedAsync 中的开发人员代码运行两次，请参阅预呈现后的有状态重新连接部分。</p> <p>在 Blazor Server 应用进行预呈现时，由于尚未建立与浏览器的连接，无法执行调用 JavaScript 等特定操作。 预呈现时，组件可能需要进行不同的呈现。 有关详细信息，请参阅检测应用何时预呈现部分。</p> <p>如果设置有事件处理程序，处置时会将其解除挂接。</p> <p>备注</p> <blockquote> <p>应用参数和属性值时，异步操作必须在 OnParametersSetAsync 生命周期事件期间发生。</p> </blockquote> <div class="ay1code"> <pre class="brush:csharp;">protected override void OnInitialized()  {      ...  }    protected override async Task OnInitializedAsync()  {      await ...  }</pre> </div> <h3>OnParametersSetAsync 或 OnParametersSet</h3> <p>在以下情况下调用：</p> <p>在 OnInitializedAsync 或 OnInitialized 中初始化组件后。</p> <p>当父组件重新呈现并提供以下内容时：</p> <ul> <li> <p>至少一个参数已更改的唯一已知基元不可变类型。</p> </li> <li> <p>任何复杂类型的参数。 框架无法知道复杂类型参数的值是否在内部发生了改变，因此，它将参数集视为已更改。</p> </li> </ul> <p>备注</p> <blockquote> <p>应用参数和属性值时，异步操作必须在 OnParametersSetAsync 生命周期事件期间发生。</p> </blockquote> <div class="ay1code"> <pre class="brush:csharp;">protected override async Task OnParametersSetAsync()  {      await ...  }    protected override void OnParametersSet()  {      ...  }</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-95943.htm">Azure DevOps通过Azure Devops部署一个.NET Core WebAPI</a></p>
+                                        <p>下一个：<a href="/news/article-96688.htm">中国兽药十大名牌厂家排名百度百科 中国兽药十大名牌厂家排名百度百科图片</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-78592.htm" title="PHP魔术方法">PHP魔术方法</a></li>
+                        <li class="py-2"><a href="/news/article-69879.htm" title="LVGL PC模拟器安装步骤详解_安装教程">LVGL PC模拟器安装步骤详解_安装教程</a></li>
+                        <li class="py-2"><a href="/news/article-73847.htm" title="动物疫苗多长时间内打有效 动物疫苗多长时间内打有效果">动物疫苗多长时间内打有效 动物疫苗多长时间内打有效果</a></li>
+                        <li class="py-2"><a href="/news/article-77918.htm" title="东北农业大学动物医学院附属医院 东北农业大学动物医学院附属医院电话">东北农业大学动物医学院附属医院 东北农业大学动物医学院附属医院电话</a></li>
+                        <li class="py-2"><a href="/news/article-80648.htm" title="Mac下配置Maven以及IDEA Maven配置">Mac下配置Maven以及IDEA Maven配置</a></li>
+                        <li class="py-2"><a href="/news/article-84917.htm" title="【PyTorch】Input type (torch.cuda.FloatTensor) and weight type (torch.FloatTensor) should be the same">【PyTorch】Input type (torch.cuda.FloatTensor) and weight type (torch.FloatTensor) should be the same</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-18-free-v2ray-subscribe.htm" title="免费Clash节点 | 3月18日21.9M/S|免费SSR/Clash/Shadowrocket/V2ray免费节点订阅分享">免费Clash节点 | 3月18日21.9M/S|免费SSR/Clash/Shadowrocket/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-free-v2ray.htm" title="免费Clash节点 | 3月8日19.7M/S|免费Shadowrocket/Clash/SSR/V2ray免费节点订阅分享">免费Clash节点 | 3月8日19.7M/S|免费Shadowrocket/Clash/SSR/V2ray免费节点订阅分享</a></li>
+                        <li class="py-2"><a href="/news/article-80649.htm" title="成都宠物领养平台领养可靠吗现在多少钱一天（成都宠物领养网免费）">成都宠物领养平台领养可靠吗现在多少钱一天（成都宠物领养网免费）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-24-free-subscribe-node.htm" title="免费Clash节点 | 3月24日20.8M/S|免费V2ray/Clash/SSR/Shadowrocket免费节点订阅分享">免费Clash节点 | 3月24日20.8M/S|免费V2ray/Clash/SSR/Shadowrocket免费节点订阅分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">45</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Features Area -->
+        <!-- Start Footer Area -->
+    <footer class="footer">
+        <!-- Start Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p>免费Clash节点 机场订阅节点官网 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Middle -->
+    </footer>
+    <!--/ End Footer Area -->
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top btn-hover">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+    <!-- ========================= JS here ========================= -->
+    <script src="/assets/website/js/frontend/surgemac/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/bootstrap.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/count-up.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/wow.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/tiny-slider.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/imagesloaded.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/isotope.min.js"></script>
+    <script src="/assets/website/js/frontend/surgemac/main.js"></script>
+    <script type="text/javascript">
+    //========= glightbox
+    GLightbox({
+        'href': '#',
+        'type': 'video',
+        'source': 'youtube', //vimeo, youtube or local
+        'width': 900,
+        'autoplayVideos': true,
+    });
+
+    //====== Clients Logo Slider
+    tns({
+        container: '.client-logo-carousel',
+        slideBy: 'page',
+        autoplay: true,
+        autoplayButtonOutput: false,
+        mouseDrag: true,
+        gutter: 15,
+        nav: false,
+        controls: false,
+        responsive: {
+            0: {
+                items: 1,
+            },
+            540: {
+                items: 2,
+            },
+            768: {
+                items: 3,
+            },
+            992: {
+                items: 4,
+            },
+            1170: {
+                items: 6,
+            }
+        }
+    });
+
+    //======== Home Slider
+    var slider = new tns({
+        container: '.home-slider',
+        slideBy: 'page',
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        items: 1,
+        nav: true,
+        controls: false,
+        controlsText: [
+            '<i class="lni lni-arrow-left prev"></i>',
+            '<i class="lni lni-arrow-right next"></i>'
+        ],
+        responsive: {
+            1200: {
+                items: 1,
+            },
+            992: {
+                items: 1,
+            },
+            0: {
+                items: 1,
+            }
+
+        }
+    });
+
+    //======== Testimonial Slider
+    var slider = new tns({
+        container: '.testimonial-slider',
+        slideBy: 'page',
+        autoplay: false,
+        mouseDrag: true,
+        gutter: 0,
+        items: 1,
+        nav: true,
+        controls: false,
+        controlsText: [
+            '<i class="lni lni-arrow-left prev"></i>',
+            '<i class="lni lni-arrow-right next"></i>'
+        ],
+        responsive: {
+            1200: {
+                items: 2,
+            },
+            992: {
+                items: 1,
+            },
+            0: {
+                items: 1,
+            }
+
+        }
+    });
+
+    //============== isotope masonry js with imagesloaded
+    imagesLoaded('#container', function() {
+        var elem = document.querySelector('.grid');
+        var iso = new Isotope(elem, {
+            // options
+            itemSelector: '.grid-item',
+            masonry: {
+                // use outer width of grid-sizer for columnWidth
+                columnWidth: '.grid-item'
+            }
+        });
+
+        let filterButtons = document.querySelectorAll('.portfolio-btn-wrapper button');
+        filterButtons.forEach(e =>
+            e.addEventListener('click', () => {
+
+                let filterValue = event.target.getAttribute('data-filter');
+                iso.arrange({
+                    filter: filterValue
+                });
+            })
+        );
+    });
+    </script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
